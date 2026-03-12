@@ -249,7 +249,7 @@ const SCENES = {
         id: "boss",
         title: "Fulton Street - Hot Dog Cart",
         description: "The hot dog cart near the courthouse is run by a guy named Sal who's seen everything and judges nothing. Standing next to it, eating a hot dog with an aggressive amount of mustard, is a man in a cheap suit who matches the description of G's boss. His name tag says 'VINNIE.'",
-        evidence: ["Boss: Vinnie, runs some kind of 'consulting' operation", "Has G's last paycheck with his home address", "Address: 445 DeKalb Ave, Apt 6C"],
+        evidence: ["Boss: Vinnie, runs some kind of 'consulting' operation", "Has G's last paycheck with his home address", "Address: 275 President St, Apt 4"],
         dialogues: [
             {
                 speaker: "Vinnie - G's Boss",
@@ -282,7 +282,7 @@ const SCENES = {
                 lines: [
                     "Here's the paycheck. Made out to cash, obviously. We're not animals.",
                     "Well. He might be. I honestly don't know anymore.",
-                    "But the address on file is 445 DeKalb Avenue, Apartment 6C.",
+                    "But the address on file is 275 President Street, Apartment 4.",
                     "He lives with some roommate. Smart guy. Works at the zoo or something.",
                     "*takes another bite* You didn't hear any of this from me.",
                     "Also, try Sal's relish. It's transcendent."
@@ -303,14 +303,14 @@ const SCENES = {
         ],
         winText: "You declare it was a gorilla. Vinnie shrugs and orders another hot dog.\n\nRick gets mustard on the case file. The investigation ends at a hot dog cart.\n\nVinnie's 'consulting' business continues unimpeded. The paycheck sits in an evidence box, gathering dust.\n\nTHE END.",
         continueChoice: "Follow the paycheck. That address is our next lead.",
-        continueText: "The paycheck has an address. The roommate works at the zoo. Something clicks in your brain. You and Rick head to 445 DeKalb Avenue.",
+        continueText: "The paycheck has an address. The roommate works at the zoo. Something clicks in your brain. You and Rick head to 275 President Stnue.",
         nextScene: "apartment"
     },
 
     apartment: {
         id: "apartment",
-        title: "445 DeKalb Ave, Apt 6C - Fort Greene",
-        description: "A pre-war building in Fort Greene. The elevator is broken, so you walk up six flights. Rick is winded by the third floor. You knock on 6C. The door opens, and standing there in a cardigan and reading glasses... is Professor Nathaniel Marsh. The primate specialist from the crime scene. He doesn't seem surprised to see you.",
+        title: "275 President St, Apt 4",
+        description: "A pre-war building on President Street. The elevator is broken, so you walk up four flights. Rick is winded by the second floor. You knock on Apt 4. The door opens, and standing there in a cardigan and reading glasses... is Professor Nathaniel Marsh. The primate specialist from the crime scene. He doesn't seem surprised to see you.",
         evidence: ["Prof. Marsh is the suspect's roommate", "Marsh was at the crime scene AND lives with suspect", "Apartment has gorilla-related paraphernalia everywhere"],
         dialogues: [
             {
