@@ -472,7 +472,7 @@ const SCENES = {
                     "*pulls off the human face*",
                     "*underneath is a gorilla*",
                     "*an actual gorilla*",
-                    "OOK."
+                    "*real gorilla sounds*"
                 ]
             },
             {
@@ -499,7 +499,7 @@ const SCENES = {
                 speaker: "The Gorilla (the real one)",
                 portrait: "gorilla_real",
                 lines: [
-                    "OOK OOK.",
+                    "*real gorilla sounds*",
                     "*cracks knuckles*",
                     "*looks at all three of you*",
                     "*2,700 pounds of force per square inch*"
