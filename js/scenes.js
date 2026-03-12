@@ -12,6 +12,7 @@ const SCENES = {
         dialogues: [
             {
                 speaker: "Beat Cop Murphy",
+                portrait: "cop",
                 lines: [
                     "Detectives. Glad you're here. It's... it's a real mess in there.",
                     "Six bodies. Warehouse workers, all of them. Place is torn apart like a tornado hit it.",
@@ -23,6 +24,7 @@ const SCENES = {
             },
             {
                 speaker: "Det. Rick Brannigan (Your Partner)",
+                portrait: "rick",
                 lines: [
                     "A gorilla? In Brooklyn? That's BANANAS.",
                     "Get it? Bananas? Because gorillas eat\u2014",
@@ -33,6 +35,7 @@ const SCENES = {
             },
             {
                 speaker: "Prof. Nathaniel Marsh - Bronx Zoo Primate Division",
+                portrait: "marsh",
                 lines: [
                     "Excuse me! Excuse me, detectives! Don't touch anything!",
                     "I'm Professor Nathaniel Marsh. Primate specialist, Bronx Zoo. I heard the dispatch call.",
@@ -45,6 +48,7 @@ const SCENES = {
             },
             {
                 speaker: "Det. Rick Brannigan",
+                portrait: "rick",
                 lines: [
                     "Well, you heard the professor. Gorilla. Case closed!",
                     "Want to grab a sandwich? I know a great deli on Atlantic.",
@@ -55,6 +59,7 @@ const SCENES = {
             }
         ],
         winText: "You declare it was a gorilla that escaped from the zoo. Case closed.\n\nProfessor Marsh nods approvingly. Rick gets his sandwich. The file goes into the 'Unusual Animal Incidents' cabinet.\n\nYou were right, of course. It WAS a gorilla.\n\n...Eventually.\n\nBut you'll never know the whole story.",
+        continueChoice: "That seam on the neck... I need to see the ATM footage.",
         continueText: "Something doesn't sit right. That seam around the neck... gorillas don't have seams. You need to see the ATM footage from across the street.",
         nextScene: "atm_footage"
     },
@@ -67,6 +72,7 @@ const SCENES = {
         dialogues: [
             {
                 speaker: "Officer Chen - AV Tech",
+                portrait: "chen",
                 lines: [
                     "Okay detectives, I've got the ATM cam footage queued up. Quality's not great but...",
                     "Here. 2:14 AM. Watch the loading dock.",
@@ -79,6 +85,7 @@ const SCENES = {
             },
             {
                 speaker: "Det. Rick Brannigan",
+                portrait: "rick",
                 lines: [
                     "ENHANCE!",
                     "Can you enhance it? Say 'enhance' and zoom in.",
@@ -90,6 +97,7 @@ const SCENES = {
             },
             {
                 speaker: "Officer Chen",
+                portrait: "chen",
                 lines: [
                     "I managed to pull the plate. GLR-1LAH. It's registered to a stolen vehicle report from two days ago.",
                     "2019 Honda Civic. Silver. Reported stolen from a parking garage in Midtown.",
@@ -100,6 +108,7 @@ const SCENES = {
             },
             {
                 speaker: "Det. Rick Brannigan",
+                portrait: "rick",
                 lines: [
                     "A gorilla that steals cars AND wears seatbelts? This is the smartest gorilla in history!",
                     "I once saw a monkey ride a bicycle at the circus. This is like that but with more murder.",
@@ -110,6 +119,7 @@ const SCENES = {
             }
         ],
         winText: "You declare it was a gorilla. Case closed.\n\nOfficer Chen shrugs and goes back to her coffee. Rick seems relieved.\n\nThe stolen Honda Civic is found abandoned in Queens three days later, covered in what appears to be synthetic fur.\n\nBut you've already closed the file.\n\nTHE END.",
+        continueChoice: "Run the plates. A gorilla doesn't drive a Honda Civic.",
         continueText: "A gorilla that drives a car and wears a seatbelt? That neck seam again... You run the plates through the system. The stolen car was last seen near a rock climbing gym in Williamsburg.",
         nextScene: "climbing_gym"
     },
@@ -122,6 +132,7 @@ const SCENES = {
         dialogues: [
             {
                 speaker: "Wilder - Gym Manager",
+                portrait: "wilder",
                 lines: [
                     "Detectives. Namaste.",
                     "Yes, I know the individual you're describing. He came here often.",
@@ -133,6 +144,7 @@ const SCENES = {
             },
             {
                 speaker: "Det. Rick Brannigan",
+                portrait: "rick",
                 lines: [
                     "Excuse me one second, detective.",
                     "*Rick walks over to the climbing wall and starts trying to climb it*",
@@ -144,6 +156,7 @@ const SCENES = {
             },
             {
                 speaker: "Wilder",
+                portrait: "wilder",
                 lines: [
                     "Your partner has interesting energy.",
                     "Anyway, the gorilla guy. He had a girlfriend. She'd come pick him up sometimes.",
@@ -156,6 +169,7 @@ const SCENES = {
             },
             {
                 speaker: "Det. Rick Brannigan",
+                portrait: "rick",
                 lines: [
                     "*dusting chalk off his pants*",
                     "So our gorilla has a GIRLFRIEND? This case just got romantic!",
@@ -166,6 +180,7 @@ const SCENES = {
             }
         ],
         winText: "You declare it was a gorilla. Wilder nods slowly and says 'The universe accepts your conclusion.'\n\nRick gets tacos. The case file is closed.\n\nSomewhere in Williamsburg, a man takes off a gorilla mask in a parking lot, and no one notices.\n\nTHE END.",
+        continueChoice: "Find the girlfriend. She might know who this guy really is.",
         continueText: "A guy who takes off a gorilla mask like it's a hat? And has a girlfriend? This isn't a zoo escape. You head to Bedford Ave to find Dana.",
         nextScene: "girlfriend"
     },
@@ -178,6 +193,7 @@ const SCENES = {
         dialogues: [
             {
                 speaker: "Dana",
+                portrait: "dana",
                 lines: [
                     "Detectives. Yeah, I figured someone would come eventually.",
                     "No, I don't know his real name. Everyone just called him 'G.' I thought it was short for something.",
@@ -189,6 +205,7 @@ const SCENES = {
             },
             {
                 speaker: "Det. Rick Brannigan",
+                portrait: "rick",
                 lines: [
                     "Ma'am, I'm sorry about your boyfriend. He sounds like a real... animal.",
                     "Get it? Because\u2014",
@@ -200,6 +217,7 @@ const SCENES = {
             },
             {
                 speaker: "Dana",
+                portrait: "dana",
                 lines: [
                     "Is your partner always like this?",
                     "Look, the last time I saw G was about a week ago. He was stressed.",
@@ -211,6 +229,7 @@ const SCENES = {
             },
             {
                 speaker: "Det. Rick Brannigan",
+                portrait: "rick",
                 lines: [
                     "Murder, She Wrote! Great show. Jessica Fletcher is the real detective.",
                     "Way better than us. I mean\u2014 we're good too. We're fine.",
@@ -221,6 +240,7 @@ const SCENES = {
             }
         ],
         winText: "You declare it was a gorilla. Dana shrugs and goes back to Murder, She Wrote.\n\nRick asks for her number 'for the case file.' She closes the door.\n\nSomewhere, a gorilla-suited man named G continues his reign of consulting-related terror. But you'll never know.\n\nTHE END.",
+        continueChoice: "Track down the boss. Something about this 'consulting' stinks.",
         continueText: "A mysterious 'boss' by a hot dog cart on Fulton Street? A consulting job that involves gorilla suits? This goes deeper. You head downtown.",
         nextScene: "boss"
     },
@@ -233,6 +253,7 @@ const SCENES = {
         dialogues: [
             {
                 speaker: "Vinnie - G's Boss",
+                portrait: "vinnie",
                 lines: [
                     "*takes an enormous bite of hot dog*",
                     "G? Yeah, I know G. Good worker. Weird guy. Great at his job though.",
@@ -245,6 +266,7 @@ const SCENES = {
             },
             {
                 speaker: "Det. Rick Brannigan",
+                portrait: "rick",
                 lines: [
                     "Excuse me, one of those hot dogs please. With everything.",
                     "*eating a hot dog now*",
@@ -256,6 +278,7 @@ const SCENES = {
             },
             {
                 speaker: "Vinnie",
+                portrait: "vinnie",
                 lines: [
                     "Here's the paycheck. Made out to cash, obviously. We're not animals.",
                     "Well. He might be. I honestly don't know anymore.",
@@ -267,6 +290,7 @@ const SCENES = {
             },
             {
                 speaker: "Det. Rick Brannigan",
+                portrait: "rick",
                 lines: [
                     "His roommate works at the ZOO?! That's... actually, is that suspicious? I can't tell anymore.",
                     "*mustard dripping on his tie*",
@@ -278,6 +302,7 @@ const SCENES = {
             }
         ],
         winText: "You declare it was a gorilla. Vinnie shrugs and orders another hot dog.\n\nRick gets mustard on the case file. The investigation ends at a hot dog cart.\n\nVinnie's 'consulting' business continues unimpeded. The paycheck sits in an evidence box, gathering dust.\n\nTHE END.",
+        continueChoice: "Follow the paycheck. That address is our next lead.",
         continueText: "The paycheck has an address. The roommate works at the zoo. Something clicks in your brain. You and Rick head to 445 DeKalb Avenue.",
         nextScene: "apartment"
     },
@@ -290,6 +315,7 @@ const SCENES = {
         dialogues: [
             {
                 speaker: "Prof. Nathaniel Marsh",
+                portrait: "marsh",
                 lines: [
                     "Detectives. I was wondering when you'd find your way here.",
                     "Yes, I'm G's roommate. Small world, isn't it?",
@@ -302,6 +328,7 @@ const SCENES = {
             },
             {
                 speaker: "Det. Rick Brannigan",
+                portrait: "rick",
                 lines: [
                     "Hey! I know you! You're the guy from the... from the...",
                     "...from somewhere. Have we met? You look familiar.",
@@ -312,6 +339,7 @@ const SCENES = {
             },
             {
                 speaker: "Prof. Nathaniel Marsh",
+                portrait: "marsh",
                 lines: [
                     "We met at the crime scene. This morning. I'm the primate specialist.",
                     "I told you it was a gorilla. Which, technically, I still believe.",
@@ -323,6 +351,7 @@ const SCENES = {
             },
             {
                 speaker: "Det. Rick Brannigan",
+                portrait: "rick",
                 lines: [
                     "THE CRIME SCENE! That's where I know you from!",
                     "Wow, what a coincidence! The gorilla expert lives with the gorilla guy!",
@@ -333,6 +362,7 @@ const SCENES = {
             }
         ],
         winText: "You declare it was a gorilla. Professor Marsh nods vigorously. 'Exactly what I've been saying!'\n\nRick asks if they can use Marsh's bathroom before they leave. He gets lost in the apartment for twenty minutes.\n\nThe case is filed under 'Wildlife Incidents.' No one questions why a primate specialist lived with a man in a gorilla suit.\n\nTHE END.",
+        continueChoice: "The zoo professor is his ROOMMATE? I need to find this guy now.",
         continueText: "The primate specialist who showed up at the crime scene is the suspect's ROOMMATE? And he just let the guy leave with the suit? This stinks. You need to find G before\u2014",
         nextScene: "finale"
     },
@@ -345,6 +375,7 @@ const SCENES = {
         dialogues: [
             {
                 speaker: "???",
+                portrait: "gorilla",
                 lines: [
                     "*heavy breathing from the darkness*",
                     "*a massive figure steps into the light*",
@@ -354,6 +385,7 @@ const SCENES = {
             },
             {
                 speaker: "You (internal monologue)",
+                portrait: "you",
                 lines: [
                     "This is it. Face to face with the gorilla.",
                     "Up close, the seam around the neck is obvious. The fur has a slightly synthetic sheen.",
@@ -363,6 +395,7 @@ const SCENES = {
             },
             {
                 speaker: "The Gorilla",
+                portrait: "gorilla",
                 lines: [
                     "*reaches up to its own neck*",
                     "*grips the seam*",
@@ -375,6 +408,7 @@ const SCENES = {
             },
             {
                 speaker: "You (internal monologue)",
+                portrait: "you",
                 lines: [
                     "You knew it. You always knew. Just a man in a mask.",
                     "Case solved. Simple as that.",
@@ -383,6 +417,7 @@ const SCENES = {
             },
             {
                 speaker: "Gary",
+                portrait: "gary",
                 lines: [
                     "Actually, detective... there's one more thing.",
                     "*reaches up to his own face*",
@@ -395,6 +430,7 @@ const SCENES = {
             },
             {
                 speaker: "You (internal monologue)",
+                portrait: "you",
                 lines: [
                     "Oh no.",
                     "Oh no no no.",
@@ -405,6 +441,7 @@ const SCENES = {
             },
             {
                 speaker: "The Gorilla (the real one)",
+                portrait: "gorilla_real",
                 lines: [
                     "OOK OOK.",
                     "*cracks knuckles*",

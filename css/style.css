@@ -283,12 +283,40 @@ body {
     flex-direction: column;
 }
 
+#dialogue-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    min-height: 60px;
+}
+
+#speaker-portrait {
+    width: 55px;
+    height: 55px;
+    min-width: 55px;
+    border: 1px solid var(--panel-border);
+    background: #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+#speaker-portrait svg {
+    width: 100%;
+    height: 100%;
+}
+
+#speaker-portrait:empty {
+    display: none;
+}
+
 #speaker-name {
     font-family: var(--font-ui);
     font-size: 0.85rem;
     font-weight: bold;
     color: var(--text-highlight);
-    margin-bottom: 8px;
     text-transform: uppercase;
     letter-spacing: 0.1rem;
     min-height: 1.2em;
@@ -315,8 +343,8 @@ body {
 /* --- Bottom Area (Evidence + Choices) --- */
 #bottom-area {
     display: flex;
-    height: 180px;
-    min-height: 180px;
+    height: 220px;
+    min-height: 220px;
     gap: 0;
 }
 
@@ -363,11 +391,11 @@ body {
 
 .choice-btn {
     font-family: var(--font-main);
-    font-size: 0.95rem;
+    font-size: 0.85rem;
     color: var(--text-bright);
     background: #252525;
     border: 2px solid var(--panel-border);
-    padding: 12px 20px;
+    padding: 10px 16px;
     cursor: pointer;
     width: 100%;
     text-align: center;
@@ -390,6 +418,12 @@ body {
 
 .choice-btn.person-choice {
     border-color: #666;
+}
+
+.choice-btn.continue-choice {
+    border-color: #777;
+    background: #2a2a2a;
+    font-style: italic;
 }
 
 /* --- Status Bar --- */

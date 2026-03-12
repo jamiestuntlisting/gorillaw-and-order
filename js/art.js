@@ -867,3 +867,304 @@ const SceneArt = {
         `;
     }
 };
+
+/* ============================================
+   Character Portraits - shown in dialogue panel
+   55x55px SVG portraits, greyscale noir style
+   ============================================ */
+const Portraits = {
+    get(key) {
+        // Normalize key - try direct match, then lowercase
+        const normalized = key.toLowerCase().replace(/[^a-z_]/g, '');
+        if (this._portraits[key]) return this._portraits[key];
+        if (this._portraits[normalized]) return this._portraits[normalized];
+        // Try partial match for speaker names
+        for (const k of Object.keys(this._portraits)) {
+            if (normalized.includes(k) || k.includes(normalized)) {
+                return this._portraits[k];
+            }
+        }
+        return null;
+    },
+
+    _portraits: {
+        // You - the player detective, hardboiled
+        you: `<svg viewBox="0 0 55 55" xmlns="http://www.w3.org/2000/svg">
+            <rect width="55" height="55" fill="#111"/>
+            <!-- Head -->
+            <circle cx="27" cy="28" r="14" fill="#555"/>
+            <!-- Fedora -->
+            <ellipse cx="27" cy="17" rx="16" ry="4" fill="#3a3a3a"/>
+            <path d="M14 17 Q17 10 27 8 Q37 10 40 17" fill="#3a3a3a"/>
+            <line x1="11" y1="17" x2="43" y2="17" stroke="#444" stroke-width="1"/>
+            <!-- Shadow across face - noir style -->
+            <rect x="13" y="17" width="28" height="8" fill="#444" opacity="0.4"/>
+            <!-- Eyes in shadow -->
+            <circle cx="22" cy="26" r="1.5" fill="#333"/>
+            <circle cx="32" cy="26" r="1.5" fill="#333"/>
+            <!-- Jaw -->
+            <path d="M18 34 Q27 40 36 34" fill="#4a4a4a"/>
+            <!-- Collar -->
+            <path d="M18 42 L22 38 L27 42 L32 38 L36 42" fill="#333" stroke="#444" stroke-width="0.5"/>
+            <rect x="15" y="42" width="25" height="13" fill="#333"/>
+        </svg>`,
+
+        // Rick - your idiot partner, friendly face, bad tie
+        rick: `<svg viewBox="0 0 55 55" xmlns="http://www.w3.org/2000/svg">
+            <rect width="55" height="55" fill="#111"/>
+            <!-- Head - rounder, friendlier -->
+            <circle cx="27" cy="26" r="14" fill="#5a5a5a"/>
+            <!-- Messy hair -->
+            <path d="M14 20 Q16 10 22 9 Q27 7 32 9 Q38 10 40 20" fill="#444"/>
+            <path d="M16 18 Q18 14 20 18" fill="#444"/>
+            <path d="M35 16 Q37 12 39 16" fill="#444"/>
+            <!-- Wide goofy eyes -->
+            <circle cx="21" cy="24" r="3" fill="#eee"/>
+            <circle cx="33" cy="24" r="3" fill="#eee"/>
+            <circle cx="22" cy="24" r="1.5" fill="#222"/>
+            <circle cx="34" cy="24" r="1.5" fill="#222"/>
+            <!-- Raised eyebrows -->
+            <path d="M17 20 Q21 17 25 20" fill="none" stroke="#444" stroke-width="0.7"/>
+            <path d="M29 20 Q33 17 37 20" fill="none" stroke="#444" stroke-width="0.7"/>
+            <!-- Dumb grin -->
+            <path d="M20 32 Q27 38 34 32" fill="#444" stroke="#333" stroke-width="0.5"/>
+            <!-- Cheap suit + bad tie -->
+            <rect x="16" y="40" width="23" height="15" fill="#3a3a3a"/>
+            <path d="M24 40 L27 48 L30 40" fill="#555"/>
+            <line x1="27" y1="48" x2="27" y2="55" stroke="#555" stroke-width="2"/>
+        </svg>`,
+
+        // Beat Cop Murphy - uniformed, mustache
+        cop: `<svg viewBox="0 0 55 55" xmlns="http://www.w3.org/2000/svg">
+            <rect width="55" height="55" fill="#111"/>
+            <!-- Head -->
+            <circle cx="27" cy="28" r="13" fill="#555"/>
+            <!-- Police cap -->
+            <rect x="14" y="14" width="26" height="8" rx="2" fill="#333"/>
+            <rect x="12" y="21" width="30" height="3" fill="#3a3a3a"/>
+            <!-- Badge on cap -->
+            <circle cx="27" cy="18" r="2.5" fill="#666"/>
+            <!-- Eyes -->
+            <circle cx="22" cy="27" r="1.5" fill="#333"/>
+            <circle cx="32" cy="27" r="1.5" fill="#333"/>
+            <!-- Thick mustache -->
+            <path d="M20 32 Q24 35 27 33 Q30 35 34 32" fill="#3a3a3a"/>
+            <!-- Mouth hidden by mustache -->
+            <!-- Uniform collar -->
+            <rect x="16" y="41" width="22" height="14" fill="#2a2a2a"/>
+            <!-- Badge -->
+            <polygon points="27,43 29,46 32,47 30,49 31,52 27,50 23,52 24,49 22,47 25,46" fill="#666" stroke="#777" stroke-width="0.3"/>
+        </svg>`,
+
+        // Professor Marsh - glasses, thin hair, academic
+        marsh: `<svg viewBox="0 0 55 55" xmlns="http://www.w3.org/2000/svg">
+            <rect width="55" height="55" fill="#111"/>
+            <!-- Head -->
+            <circle cx="27" cy="27" r="13" fill="#555"/>
+            <!-- Thin receding hair -->
+            <path d="M16 22 Q18 12 27 10 Q36 12 38 22" fill="#444"/>
+            <path d="M20 20 Q22 14 27 13" fill="#555"/>
+            <!-- Round glasses -->
+            <circle cx="21" cy="25" r="5" fill="none" stroke="#888" stroke-width="1.2"/>
+            <circle cx="33" cy="25" r="5" fill="none" stroke="#888" stroke-width="1.2"/>
+            <line x1="26" y1="25" x2="28" y2="25" stroke="#888" stroke-width="1"/>
+            <line x1="16" y1="24" x2="13" y2="22" stroke="#888" stroke-width="0.7"/>
+            <line x1="38" y1="24" x2="41" y2="22" stroke="#888" stroke-width="0.7"/>
+            <!-- Eyes behind glasses -->
+            <circle cx="21" cy="25" r="1.5" fill="#333"/>
+            <circle cx="33" cy="25" r="1.5" fill="#333"/>
+            <!-- Thin lips, knowing expression -->
+            <path d="M23 33 Q27 35 31 33" fill="none" stroke="#444" stroke-width="0.7"/>
+            <!-- Bow tie + cardigan -->
+            <path d="M24 40 L27 42 L30 40 L27 44 Z" fill="#555"/>
+            <rect x="16" y="42" width="22" height="13" fill="#3a3a3a"/>
+            <line x1="27" y1="42" x2="27" y2="55" stroke="#333" stroke-width="0.5"/>
+        </svg>`,
+
+        // Officer Chen - tech lab, headset
+        chen: `<svg viewBox="0 0 55 55" xmlns="http://www.w3.org/2000/svg">
+            <rect width="55" height="55" fill="#111"/>
+            <!-- Head -->
+            <circle cx="27" cy="27" r="13" fill="#555"/>
+            <!-- Hair pulled back -->
+            <path d="M14 24 Q16 12 27 10 Q38 12 40 24" fill="#333"/>
+            <path d="M38 22 Q40 18 42 25 Q40 28 38 24" fill="#333"/>
+            <!-- Eyes - focused -->
+            <line x1="20" y1="25" x2="25" y2="25" stroke="#333" stroke-width="1.5"/>
+            <line x1="29" y1="25" x2="34" y2="25" stroke="#333" stroke-width="1.5"/>
+            <circle cx="22" cy="25" r="1" fill="#222"/>
+            <circle cx="32" cy="25" r="1" fill="#222"/>
+            <!-- Slight frown - concentrating -->
+            <line x1="24" y1="33" x2="30" y2="33" stroke="#444" stroke-width="0.7"/>
+            <!-- Headset -->
+            <path d="M14 22 Q12 15 14 10 Q20 4 27 4 Q34 4 40 10 Q42 15 40 22" fill="none" stroke="#666" stroke-width="1.5"/>
+            <rect x="11" y="20" width="5" height="8" rx="1" fill="#555"/>
+            <!-- Headset mic -->
+            <path d="M13 28 Q15 32 20 33" fill="none" stroke="#666" stroke-width="1"/>
+            <!-- Uniform -->
+            <rect x="16" y="40" width="22" height="15" fill="#2a2a2a"/>
+        </svg>`,
+
+        // Wilder - man bun, zen expression
+        wilder: `<svg viewBox="0 0 55 55" xmlns="http://www.w3.org/2000/svg">
+            <rect width="55" height="55" fill="#111"/>
+            <!-- Head -->
+            <circle cx="27" cy="28" r="13" fill="#555"/>
+            <!-- Man bun -->
+            <path d="M16 22 Q18 12 27 10 Q36 12 38 22" fill="#444"/>
+            <circle cx="27" cy="10" r="5" fill="#444"/>
+            <!-- Serene closed eyes -->
+            <path d="M19 26 Q22 28 25 26" fill="none" stroke="#333" stroke-width="1"/>
+            <path d="M29 26 Q32 28 35 26" fill="none" stroke="#333" stroke-width="1"/>
+            <!-- Calm smile -->
+            <path d="M22 33 Q27 36 32 33" fill="none" stroke="#444" stroke-width="0.7"/>
+            <!-- Slight beard -->
+            <path d="M18 32 Q20 38 27 40 Q34 38 36 32" fill="none" stroke="#4a4a4a" stroke-width="0.5"/>
+            <!-- Tank top / athletic wear -->
+            <path d="M18 41 Q20 38 27 37 Q34 38 36 41" fill="#3a3a3a"/>
+            <rect x="19" y="41" width="16" height="14" fill="#3a3a3a"/>
+            <!-- Exposed shoulders -->
+            <circle cx="16" cy="44" r="4" fill="#555"/>
+            <circle cx="38" cy="44" r="4" fill="#555"/>
+        </svg>`,
+
+        // Dana - tired, hair down, unimpressed
+        dana: `<svg viewBox="0 0 55 55" xmlns="http://www.w3.org/2000/svg">
+            <rect width="55" height="55" fill="#111"/>
+            <!-- Head -->
+            <circle cx="27" cy="26" r="13" fill="#5a5a5a"/>
+            <!-- Long hair -->
+            <path d="M14 22 Q16 10 27 8 Q38 10 40 22" fill="#333"/>
+            <path d="M14 22 Q12 32 14 42" fill="#333" stroke="#333" stroke-width="3"/>
+            <path d="M40 22 Q42 32 40 42" fill="#333" stroke="#333" stroke-width="3"/>
+            <!-- Tired eyes - half-lidded -->
+            <line x1="20" y1="24" x2="25" y2="24" stroke="#333" stroke-width="1.2"/>
+            <line x1="29" y1="24" x2="34" y2="24" stroke="#333" stroke-width="1.2"/>
+            <circle cx="22" cy="25" r="1" fill="#333"/>
+            <circle cx="32" cy="25" r="1" fill="#333"/>
+            <!-- Under-eye circles -->
+            <path d="M19 27 Q22 28 25 27" fill="none" stroke="#4a4a4a" stroke-width="0.5"/>
+            <path d="M29 27 Q32 28 35 27" fill="none" stroke="#4a4a4a" stroke-width="0.5"/>
+            <!-- Unimpressed flat mouth -->
+            <line x1="24" y1="32" x2="30" y2="32" stroke="#444" stroke-width="0.7"/>
+            <!-- Oversized sweater -->
+            <rect x="13" y="39" width="28" height="16" rx="3" fill="#3a3a3a"/>
+            <path d="M13 42 Q10 45 11 50" fill="none" stroke="#3a3a3a" stroke-width="5"/>
+            <path d="M41 42 Q44 45 43 50" fill="none" stroke="#3a3a3a" stroke-width="5"/>
+        </svg>`,
+
+        // Vinnie - slicked hair, cheap suit, eating
+        vinnie: `<svg viewBox="0 0 55 55" xmlns="http://www.w3.org/2000/svg">
+            <rect width="55" height="55" fill="#111"/>
+            <!-- Head -->
+            <circle cx="27" cy="27" r="13" fill="#555"/>
+            <!-- Slicked back hair -->
+            <path d="M14 24 Q16 12 27 10 Q38 12 40 24" fill="#2a2a2a"/>
+            <!-- Beady eyes -->
+            <circle cx="22" cy="26" r="1.5" fill="#222"/>
+            <circle cx="32" cy="26" r="1.5" fill="#222"/>
+            <!-- Heavy eyebrows -->
+            <line x1="18" y1="22" x2="25" y2="23" stroke="#333" stroke-width="1.5"/>
+            <line x1="29" y1="23" x2="36" y2="22" stroke="#333" stroke-width="1.5"/>
+            <!-- Eating - open mouth -->
+            <ellipse cx="27" cy="33" rx="4" ry="3" fill="#444"/>
+            <!-- 5 o'clock shadow -->
+            <path d="M17 30 Q20 38 27 40 Q34 38 37 30" fill="url(#crosshatch-light)" opacity="0.2"/>
+            <!-- Cheap suit + open collar -->
+            <rect x="15" y="40" width="24" height="15" fill="#2a2a2a"/>
+            <path d="M22 40 L27 46 L32 40" fill="#333"/>
+            <!-- Gold chain hint -->
+            <path d="M22 42 Q27 45 32 42" fill="none" stroke="#666" stroke-width="0.5"/>
+        </svg>`,
+
+        // Gorilla - the suspect (with seam)
+        gorilla: `<svg viewBox="0 0 55 55" xmlns="http://www.w3.org/2000/svg">
+            <rect width="55" height="55" fill="#0a0a0a"/>
+            <!-- Head -->
+            <ellipse cx="27" cy="22" rx="16" ry="18" fill="#2a2a2a"/>
+            <!-- Brow ridge -->
+            <path d="M13 18 Q27 10 41 18" fill="#222" stroke="#1a1a1a" stroke-width="0.7"/>
+            <!-- Eyes -->
+            <ellipse cx="21" cy="21" rx="3.5" ry="2.5" fill="#1a1a1a"/>
+            <ellipse cx="33" cy="21" rx="3.5" ry="2.5" fill="#1a1a1a"/>
+            <circle cx="22" cy="20.5" r="1.2" fill="#555"/>
+            <circle cx="34" cy="20.5" r="1.2" fill="#555"/>
+            <!-- Nose -->
+            <ellipse cx="27" cy="28" rx="5" ry="3.5" fill="#1e1e1e"/>
+            <circle cx="24" cy="28" r="1.2" fill="#111"/>
+            <circle cx="30" cy="28" r="1.2" fill="#111"/>
+            <!-- Mouth -->
+            <path d="M22 33 Q27 36 32 33" fill="none" stroke="#111" stroke-width="0.7"/>
+            <!-- === THE SEAM === -->
+            <line x1="12" y1="38" x2="42" y2="38" stroke="#555" stroke-width="1.5" stroke-dasharray="2,1.5"/>
+            <path d="M20 37 Q22 40 24 37" fill="none" stroke="#666" stroke-width="0.5"/>
+            <path d="M30 37 Q32 40 34 37" fill="none" stroke="#666" stroke-width="0.5"/>
+            <!-- Body -->
+            <ellipse cx="27" cy="50" rx="18" ry="12" fill="#252525"/>
+        </svg>`,
+
+        // Gary - the man under the gorilla mask
+        gary: `<svg viewBox="0 0 55 55" xmlns="http://www.w3.org/2000/svg">
+            <rect width="55" height="55" fill="#0a0a0a"/>
+            <!-- Head -->
+            <circle cx="27" cy="25" r="14" fill="#555"/>
+            <!-- Short hair -->
+            <path d="M14 20 Q18 10 27 8 Q36 10 40 20" fill="#3a3a3a"/>
+            <!-- Eyes - smug -->
+            <circle cx="22" cy="24" r="1.5" fill="#333"/>
+            <circle cx="32" cy="24" r="1.5" fill="#333"/>
+            <!-- Smirk -->
+            <path d="M22 31 Q27 35 32 30" fill="none" stroke="#444" stroke-width="1"/>
+            <!-- Stubble -->
+            <rect x="18" y="28" width="18" height="10" fill="url(#crosshatch-light)" opacity="0.15"/>
+            <!-- Gorilla suit visible at neck -->
+            <rect x="14" y="38" width="26" height="17" fill="#2a2a2a"/>
+            <!-- Suit fur texture -->
+            <g stroke="#333" stroke-width="0.5">
+                <line x1="18" y1="42" x2="18" y2="46"/>
+                <line x1="22" y1="41" x2="22" y2="45"/>
+                <line x1="27" y1="40" x2="27" y2="44"/>
+                <line x1="32" y1="41" x2="32" y2="45"/>
+                <line x1="36" y1="42" x2="36" y2="46"/>
+            </g>
+        </svg>`,
+
+        // Real gorilla - no seam, menacing
+        gorilla_real: `<svg viewBox="0 0 55 55" xmlns="http://www.w3.org/2000/svg">
+            <rect width="55" height="55" fill="#080808"/>
+            <!-- Head - larger, more detailed -->
+            <ellipse cx="27" cy="22" rx="17" ry="19" fill="#1e1e1e"/>
+            <!-- Heavy brow -->
+            <path d="M11 17 Q27 8 43 17" fill="#1a1a1a" stroke="#111" stroke-width="1"/>
+            <!-- Intense eyes -->
+            <ellipse cx="20" cy="20" rx="4" ry="3" fill="#111"/>
+            <ellipse cx="34" cy="20" rx="4" ry="3" fill="#111"/>
+            <circle cx="21" cy="19.5" r="1.5" fill="#666"/>
+            <circle cx="35" cy="19.5" r="1.5" fill="#666"/>
+            <!-- Wide nose -->
+            <ellipse cx="27" cy="28" rx="6" ry="4" fill="#161616"/>
+            <circle cx="24" cy="28" r="1.5" fill="#0e0e0e"/>
+            <circle cx="30" cy="28" r="1.5" fill="#0e0e0e"/>
+            <!-- Snarling mouth -->
+            <path d="M20 33 Q27 38 34 33" fill="#111" stroke="#0e0e0e" stroke-width="0.7"/>
+            <line x1="24" y1="33" x2="24" y2="35" stroke="#555" stroke-width="0.7"/>
+            <line x1="27" y1="34" x2="27" y2="37" stroke="#555" stroke-width="0.7"/>
+            <line x1="30" y1="33" x2="30" y2="35" stroke="#555" stroke-width="0.7"/>
+            <!-- NO SEAM - real gorilla -->
+            <!-- Massive shoulders -->
+            <ellipse cx="27" cy="48" rx="22" ry="14" fill="#1a1a1a"/>
+        </svg>`,
+
+        // Scene description - magnifying glass
+        scene: `<svg viewBox="0 0 55 55" xmlns="http://www.w3.org/2000/svg">
+            <rect width="55" height="55" fill="#111"/>
+            <!-- Magnifying glass -->
+            <circle cx="24" cy="22" r="12" fill="none" stroke="#666" stroke-width="2"/>
+            <circle cx="24" cy="22" r="9" fill="#1a1a1a"/>
+            <line x1="33" y1="31" x2="44" y2="44" stroke="#666" stroke-width="3" stroke-linecap="round"/>
+            <!-- Eye icon inside glass -->
+            <ellipse cx="24" cy="22" rx="5" ry="3" fill="none" stroke="#444" stroke-width="1"/>
+            <circle cx="24" cy="22" r="1.5" fill="#444"/>
+        </svg>`
+    }
+};

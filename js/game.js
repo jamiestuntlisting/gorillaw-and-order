@@ -31,6 +31,7 @@ const game = {
             fadeOverlay: document.getElementById('fade-overlay'),
             sceneTitle: document.getElementById('scene-title'),
             sceneArtContainer: document.getElementById('scene-art-container'),
+            speakerPortrait: document.getElementById('speaker-portrait'),
             speakerName: document.getElementById('speaker-name'),
             dialogueText: document.getElementById('dialogue-text'),
             dialoguePrompt: document.getElementById('dialogue-prompt'),
@@ -130,11 +131,13 @@ const game = {
         // Clear dialogue
         this.dom.speakerName.textContent = '';
         this.dom.dialogueText.textContent = '';
+        this.dom.speakerPortrait.innerHTML = '';
         this.dom.dialoguePrompt.classList.add('hidden');
         this.dom.choicesContainer.innerHTML = '';
 
         // Show scene description first, then start dialogue
         this.dom.speakerName.textContent = 'SCENE';
+        this.showPortrait('scene');
         this.typewrite(scene.description, () => {
             this.dom.dialoguePrompt.classList.remove('hidden');
             this.waitForClick(() => {
@@ -189,6 +192,7 @@ const game = {
 
         const line = block.lines[this.state.lineIndex];
         this.dom.speakerName.textContent = block.speaker;
+        this.showPortrait(block.portrait || block.speaker);
         this.dom.dialoguePrompt.classList.add('hidden');
 
         this.typewrite(line, () => {
@@ -271,18 +275,29 @@ const game = {
         document.addEventListener('keydown', keyHandler);
     },
 
-    // Present the gorilla/person choice
+    // Show portrait SVG for current speaker
+    showPortrait(speaker) {
+        const portrait = Portraits.get(speaker);
+        if (portrait) {
+            this.dom.speakerPortrait.innerHTML = portrait;
+        } else {
+            this.dom.speakerPortrait.innerHTML = '';
+        }
+    },
+
+    // Present the gorilla/person/continue choice
     presentChoice() {
         this.state.awaitingChoice = true;
         const scene = SCENES[this.state.currentScene];
 
         this.dom.speakerName.textContent = 'YOUR CONCLUSION';
+        this.showPortrait('you');
         this.dom.dialogueText.textContent = 'Based on the evidence, what do you think happened here?';
         this.dom.dialoguePrompt.classList.add('hidden');
 
         this.dom.choicesContainer.innerHTML = '';
 
-        // Gorilla choice
+        // Gorilla choice - ends the game
         const gorillaBtn = document.createElement('button');
         gorillaBtn.className = 'choice-btn gorilla-choice';
         gorillaBtn.textContent = 'It was a gorilla that escaped from the zoo.';
@@ -291,7 +306,16 @@ const game = {
             this.handleGorillaChoice();
         };
 
-        // Person choice
+        // Continue investigating choice - keeps the story going
+        const continueBtn = document.createElement('button');
+        continueBtn.className = 'choice-btn continue-choice';
+        continueBtn.textContent = scene.continueChoice || 'I need more evidence. Keep investigating.';
+        continueBtn.onclick = () => {
+            GameAudio.choiceClick();
+            this.handlePersonChoice();
+        };
+
+        // Person choice - also keeps the story going
         const personBtn = document.createElement('button');
         personBtn.className = 'choice-btn person-choice';
         personBtn.textContent = 'No... this was done by a person.';
@@ -301,6 +325,7 @@ const game = {
         };
 
         this.dom.choicesContainer.appendChild(gorillaBtn);
+        this.dom.choicesContainer.appendChild(continueBtn);
         this.dom.choicesContainer.appendChild(personBtn);
 
         this.dom.statusText.textContent = 'Make your determination...';
@@ -324,6 +349,7 @@ const game = {
 
         this.dom.choicesContainer.innerHTML = '';
         this.dom.speakerName.textContent = 'INTERNAL MONOLOGUE';
+        this.showPortrait('you');
 
         this.typewrite(scene.continueText, () => {
             this.dom.dialoguePrompt.classList.remove('hidden');
@@ -361,6 +387,7 @@ const game = {
 
             const line = block.lines[lIdx];
             this.dom.speakerName.textContent = block.speaker;
+            this.showPortrait(block.portrait || block.speaker);
 
             this.typewrite(line, () => {
                 lIdx++;
@@ -374,6 +401,7 @@ const game = {
         // Start finale dialogue
         this.dom.speakerName.textContent = '';
         this.dom.dialogueText.textContent = '';
+        this.dom.speakerPortrait.innerHTML = '';
         this.dom.choicesContainer.innerHTML = '';
         this.dom.statusText.textContent = 'Something is wrong...';
         playNextFinale();
