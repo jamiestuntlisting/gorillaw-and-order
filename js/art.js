@@ -869,6 +869,450 @@ const SceneArt = {
 };
 
 /* ============================================
+   Character Scene Art - full-size illustrations
+   shown in the Scene panel when characters speak
+   300x300 SVG, greyscale noir style
+   ============================================ */
+const CharacterArt = {
+    get(key) {
+        const normalized = key.toLowerCase().replace(/[^a-z_]/g, '');
+        if (this._art[key]) return this._art[key];
+        if (this._art[normalized]) return this._art[normalized];
+        for (const k of Object.keys(this._art)) {
+            if (normalized.includes(k) || k.includes(normalized)) {
+                return this._art[k];
+            }
+        }
+        return null;
+    },
+
+    _art: {
+        // Beat Cop Murphy - at crime scene, uniformed, mustache
+        cop: `<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="ca-shadow" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="transparent"/>
+                    <stop offset="100%" stop-color="#000" stop-opacity="0.6"/>
+                </linearGradient>
+            </defs>
+            <rect width="300" height="300" fill="#111"/>
+            <!-- Dingy precinct background -->
+            <rect x="0" y="200" width="300" height="100" fill="#1a1a1a"/>
+            <line x1="0" y1="200" x2="300" y2="200" stroke="#333" stroke-width="1"/>
+            <!-- Police tape hint -->
+            <rect x="0" y="180" width="300" height="6" fill="#333" opacity="0.5" transform="rotate(-3, 150, 183)"/>
+            <!-- Murphy - upper body -->
+            <g transform="translate(80, 50)">
+                <!-- Uniform body -->
+                <rect x="30" y="150" width="80" height="100" rx="5" fill="#222"/>
+                <!-- Badge -->
+                <polygon points="70,160 74,170 82,172 76,180 78,190 70,185 62,190 64,180 58,172 66,170" fill="#555" stroke="#666" stroke-width="0.5"/>
+                <!-- Neck -->
+                <rect x="55" y="130" width="30" height="25" fill="#555"/>
+                <!-- Head -->
+                <circle cx="70" cy="105" r="40" fill="#5a5a5a"/>
+                <!-- Police cap -->
+                <rect x="28" y="65" width="84" height="22" rx="4" fill="#2a2a2a"/>
+                <rect x="24" y="85" width="92" height="8" fill="#333"/>
+                <!-- Cap badge -->
+                <circle cx="70" cy="76" r="6" fill="#555" stroke="#666" stroke-width="0.5"/>
+                <!-- Eyes - tired -->
+                <ellipse cx="55" cy="102" rx="5" ry="3.5" fill="#eee"/>
+                <ellipse cx="85" cy="102" rx="5" ry="3.5" fill="#eee"/>
+                <circle cx="56" cy="102" r="2.5" fill="#222"/>
+                <circle cx="86" cy="102" r="2.5" fill="#222"/>
+                <!-- Bags under eyes -->
+                <path d="M49 107 Q55 110 61 107" fill="none" stroke="#4a4a4a" stroke-width="0.7"/>
+                <path d="M79 107 Q85 110 91 107" fill="none" stroke="#4a4a4a" stroke-width="0.7"/>
+                <!-- Thick mustache -->
+                <path d="M52 118 Q60 125 70 120 Q80 125 88 118" fill="#333"/>
+                <!-- Mouth barely visible under stache -->
+                <path d="M60 125 Q70 128 80 125" fill="none" stroke="#444" stroke-width="0.5"/>
+            </g>
+            <!-- Vignette -->
+            <rect width="300" height="300" fill="url(#ca-shadow)" opacity="0.5"/>
+        </svg>`,
+
+        // Rick - goofy partner, messy hair, bad tie
+        rick: `<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="ca-shadow2" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="transparent"/>
+                    <stop offset="100%" stop-color="#000" stop-opacity="0.6"/>
+                </linearGradient>
+            </defs>
+            <rect width="300" height="300" fill="#111"/>
+            <rect x="0" y="210" width="300" height="90" fill="#1a1a1a"/>
+            <!-- Rick - upper body, slightly off-center (he's always a bit off) -->
+            <g transform="translate(70, 40)">
+                <!-- Rumpled suit jacket -->
+                <rect x="25" y="155" width="100" height="105" rx="5" fill="#333"/>
+                <!-- Shirt visible -->
+                <rect x="55" y="155" width="40" height="60" fill="#444"/>
+                <!-- Terrible tie -->
+                <path d="M68 155 L75 195 L82 155" fill="#555"/>
+                <line x1="75" y1="195" x2="75" y2="230" stroke="#555" stroke-width="4"/>
+                <!-- Neck -->
+                <rect x="55" y="130" width="40" height="30" fill="#5a5a5a"/>
+                <!-- Head - rounder, friendlier -->
+                <circle cx="75" cy="100" r="42" fill="#5e5e5e"/>
+                <!-- Messy hair -->
+                <path d="M35 85 Q40 50 55 42 Q75 35 95 42 Q110 50 115 85" fill="#3a3a3a"/>
+                <path d="M40 78 Q45 68 50 78" fill="#3a3a3a"/>
+                <path d="M100 74 Q105 62 110 74" fill="#3a3a3a"/>
+                <path d="M55 70 Q58 60 62 70" fill="#3a3a3a"/>
+                <!-- Wide goofy eyes -->
+                <ellipse cx="60" cy="97" rx="8" ry="7" fill="#eee"/>
+                <ellipse cx="90" cy="97" rx="8" ry="7" fill="#eee"/>
+                <circle cx="62" cy="97" r="4" fill="#222"/>
+                <circle cx="92" cy="97" r="4" fill="#222"/>
+                <!-- Bright eye highlights -->
+                <circle cx="64" cy="95" r="1.5" fill="#fff"/>
+                <circle cx="94" cy="95" r="1.5" fill="#fff"/>
+                <!-- Raised eyebrows - perpetually surprised -->
+                <path d="M48 86 Q58 78 68 86" fill="none" stroke="#444" stroke-width="1.5"/>
+                <path d="M82 86 Q92 78 102 86" fill="none" stroke="#444" stroke-width="1.5"/>
+                <!-- Dumb happy grin -->
+                <path d="M55 115 Q75 130 95 115" fill="#444" stroke="#333" stroke-width="1"/>
+                <!-- Teeth showing -->
+                <rect x="64" y="115" width="22" height="6" fill="#999" rx="1"/>
+            </g>
+            <rect width="300" height="300" fill="url(#ca-shadow2)" opacity="0.4"/>
+        </svg>`,
+
+        // Professor Marsh - academic, glasses, bow tie
+        marsh: `<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="ca-shadow3" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="transparent"/>
+                    <stop offset="100%" stop-color="#000" stop-opacity="0.6"/>
+                </linearGradient>
+            </defs>
+            <rect width="300" height="300" fill="#0e0e0e"/>
+            <!-- Bookshelf background hint -->
+            <g opacity="0.15">
+                <rect x="10" y="10" width="280" height="40" fill="#333"/>
+                <rect x="20" y="15" width="15" height="30" fill="#444"/>
+                <rect x="40" y="12" width="12" height="33" fill="#3a3a3a"/>
+                <rect x="58" y="15" width="18" height="30" fill="#444"/>
+                <rect x="200" y="15" width="14" height="30" fill="#444"/>
+                <rect x="220" y="12" width="20" height="33" fill="#3a3a3a"/>
+            </g>
+            <!-- Marsh - upper body -->
+            <g transform="translate(75, 45)">
+                <!-- Cardigan -->
+                <rect x="25" y="155" width="100" height="100" rx="5" fill="#333"/>
+                <line x1="75" y1="155" x2="75" y2="255" stroke="#2a2a2a" stroke-width="1"/>
+                <!-- Elbow patches implied -->
+                <ellipse cx="30" cy="200" rx="12" ry="18" fill="#3a3a3a"/>
+                <ellipse cx="120" cy="200" rx="12" ry="18" fill="#3a3a3a"/>
+                <!-- Bow tie -->
+                <path d="M60 155 L75 162 L90 155 L75 168 Z" fill="#555"/>
+                <!-- Neck - thinner -->
+                <rect x="58" y="130" width="34" height="28" fill="#555"/>
+                <!-- Head -->
+                <circle cx="75" cy="100" r="40" fill="#585858"/>
+                <!-- Thin receding hair -->
+                <path d="M38 88 Q45 52 75 45 Q105 52 112 88" fill="#3a3a3a"/>
+                <path d="M50 78 Q58 55 75 52" fill="#555"/>
+                <!-- Round glasses - prominent -->
+                <circle cx="58" cy="97" r="14" fill="none" stroke="#999" stroke-width="2.5"/>
+                <circle cx="92" cy="97" r="14" fill="none" stroke="#999" stroke-width="2.5"/>
+                <line x1="72" y1="97" x2="78" y2="97" stroke="#999" stroke-width="2"/>
+                <line x1="44" y1="94" x2="36" y2="90" stroke="#999" stroke-width="1.5"/>
+                <line x1="106" y1="94" x2="114" y2="90" stroke="#999" stroke-width="1.5"/>
+                <!-- Eyes behind glasses - knowing -->
+                <circle cx="58" cy="97" r="3" fill="#333"/>
+                <circle cx="92" cy="97" r="3" fill="#333"/>
+                <!-- Slight smirk - he knows something -->
+                <path d="M62 118 Q75 124 88 116" fill="none" stroke="#444" stroke-width="1.2"/>
+            </g>
+            <rect width="300" height="300" fill="url(#ca-shadow3)" opacity="0.5"/>
+        </svg>`,
+
+        // Officer Chen - tech analyst, headset
+        chen: `<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="ca-shadow4" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="transparent"/>
+                    <stop offset="100%" stop-color="#000" stop-opacity="0.6"/>
+                </linearGradient>
+            </defs>
+            <rect width="300" height="300" fill="#0a0a0a"/>
+            <!-- Monitor glow background -->
+            <rect x="60" y="20" width="180" height="130" rx="5" fill="#181818" stroke="#333" stroke-width="2"/>
+            <rect x="70" y="30" width="160" height="110" fill="#111"/>
+            <!-- Screen static lines -->
+            <g opacity="0.3">
+                <line x1="70" y1="50" x2="230" y2="50" stroke="#222" stroke-width="1"/>
+                <line x1="70" y1="80" x2="230" y2="80" stroke="#222" stroke-width="1"/>
+                <line x1="70" y1="110" x2="230" y2="110" stroke="#222" stroke-width="1"/>
+            </g>
+            <!-- Chen - upper body in foreground -->
+            <g transform="translate(80, 100)">
+                <!-- Uniform -->
+                <rect x="25" y="135" width="90" height="65" rx="3" fill="#222"/>
+                <!-- Neck -->
+                <rect x="52" y="115" width="36" height="25" fill="#555"/>
+                <!-- Head -->
+                <circle cx="70" cy="88" r="38" fill="#585858"/>
+                <!-- Hair pulled back tight -->
+                <path d="M34 75 Q40 42 70 36 Q100 42 106 75" fill="#2a2a2a"/>
+                <path d="M104 70 Q108 60 112 78 Q108 88 104 78" fill="#2a2a2a"/>
+                <!-- Headset -->
+                <path d="M32 72 Q28 50 35 35 Q50 18 70 15 Q90 18 105 35 Q112 50 108 72" fill="none" stroke="#666" stroke-width="3"/>
+                <rect x="25" y="68" width="14" height="22" rx="3" fill="#555"/>
+                <!-- Headset mic -->
+                <path d="M32 90 Q38 100 52 104" fill="none" stroke="#666" stroke-width="2"/>
+                <!-- Eyes - sharp, focused -->
+                <ellipse cx="55" cy="85" rx="6" ry="4" fill="#eee"/>
+                <ellipse cx="85" cy="85" rx="6" ry="4" fill="#eee"/>
+                <circle cx="56" cy="85" r="2.5" fill="#222"/>
+                <circle cx="86" cy="85" r="2.5" fill="#222"/>
+                <!-- Slight concentration frown -->
+                <line x1="60" y1="105" x2="80" y2="105" stroke="#444" stroke-width="1"/>
+            </g>
+            <rect width="300" height="300" fill="url(#ca-shadow4)" opacity="0.4"/>
+        </svg>`,
+
+        // Wilder - climbing gym owner, man bun, zen
+        wilder: `<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="ca-shadow5" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="transparent"/>
+                    <stop offset="100%" stop-color="#000" stop-opacity="0.6"/>
+                </linearGradient>
+            </defs>
+            <rect width="300" height="300" fill="#111"/>
+            <!-- Climbing wall background -->
+            <g opacity="0.2">
+                <circle cx="40" cy="60" r="12" fill="#333"/>
+                <circle cx="120" cy="40" r="10" fill="#2a2a2a"/>
+                <circle cx="250" cy="80" r="14" fill="#333"/>
+                <circle cx="200" cy="30" r="8" fill="#2a2a2a"/>
+                <circle cx="70" cy="130" r="11" fill="#333"/>
+                <circle cx="260" cy="150" r="9" fill="#2a2a2a"/>
+            </g>
+            <!-- Wilder -->
+            <g transform="translate(75, 50)">
+                <!-- Tank top body - fit -->
+                <rect x="40" y="155" width="70" height="95" rx="3" fill="#333"/>
+                <!-- Bare shoulders -->
+                <circle cx="38" cy="162" r="14" fill="#585858"/>
+                <circle cx="112" cy="162" r="14" fill="#585858"/>
+                <!-- Arms - muscular -->
+                <rect x="20" y="160" width="18" height="50" rx="5" fill="#555"/>
+                <rect x="112" y="160" width="18" height="50" rx="5" fill="#555"/>
+                <!-- Neck -->
+                <rect x="55" y="130" width="40" height="28" fill="#585858"/>
+                <!-- Head -->
+                <circle cx="75" cy="100" r="40" fill="#5a5a5a"/>
+                <!-- Man bun -->
+                <path d="M38 85 Q45 48 75 42 Q105 48 112 85" fill="#3a3a3a"/>
+                <circle cx="75" cy="42" r="14" fill="#3a3a3a"/>
+                <!-- Serene closed eyes -->
+                <path d="M52 95 Q60 102 68 95" fill="none" stroke="#333" stroke-width="2"/>
+                <path d="M82 95 Q90 102 98 95" fill="none" stroke="#333" stroke-width="2"/>
+                <!-- Calm knowing smile -->
+                <path d="M58 118 Q75 126 92 118" fill="none" stroke="#444" stroke-width="1.2"/>
+                <!-- Light beard -->
+                <path d="M45 112 Q52 130 75 135 Q98 130 105 112" fill="none" stroke="#4a4a4a" stroke-width="1"/>
+            </g>
+            <rect width="300" height="300" fill="url(#ca-shadow5)" opacity="0.4"/>
+        </svg>`,
+
+        // Dana - ex-girlfriend, tired, unimpressed
+        dana: `<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="ca-shadow6" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="transparent"/>
+                    <stop offset="100%" stop-color="#000" stop-opacity="0.6"/>
+                </linearGradient>
+            </defs>
+            <rect width="300" height="300" fill="#0e0e0e"/>
+            <!-- Apartment doorway background -->
+            <rect x="80" y="0" width="140" height="300" fill="#161616"/>
+            <rect x="78" y="0" width="4" height="300" fill="#333"/>
+            <rect x="218" y="0" width="4" height="300" fill="#333"/>
+            <!-- Light from inside -->
+            <rect x="84" y="0" width="132" height="300" fill="#1a1a1a"/>
+            <!-- Dana - leaning in doorway -->
+            <g transform="translate(80, 45)">
+                <!-- Oversized sweater -->
+                <rect x="20" y="155" width="100" height="100" rx="8" fill="#333"/>
+                <!-- Big sleeves -->
+                <path d="M20 165 Q5 175 8 210" fill="none" stroke="#333" stroke-width="14" stroke-linecap="round"/>
+                <path d="M120" fill="none" stroke="#333" stroke-width="14" stroke-linecap="round"/>
+                <!-- Neck -->
+                <rect x="52" y="132" width="36" height="26" fill="#5a5a5a"/>
+                <!-- Head -->
+                <circle cx="70" cy="100" r="40" fill="#5e5e5e"/>
+                <!-- Long hair framing face -->
+                <path d="M32 82 Q38 45 70 38 Q102 45 108 82" fill="#2a2a2a"/>
+                <path d="M32 82 Q28 120 32 160" fill="#2a2a2a" stroke="#2a2a2a" stroke-width="8"/>
+                <path d="M108 82 Q112 120 108 160" fill="#2a2a2a" stroke="#2a2a2a" stroke-width="8"/>
+                <!-- Half-lidded tired eyes -->
+                <line x1="52" y1="95" x2="65" y2="95" stroke="#333" stroke-width="2.5"/>
+                <line x1="75" y1="95" x2="88" y2="95" stroke="#333" stroke-width="2.5"/>
+                <circle cx="58" cy="97" r="2" fill="#333"/>
+                <circle cx="82" cy="97" r="2" fill="#333"/>
+                <!-- Under-eye circles -->
+                <path d="M50 101 Q58 105 66 101" fill="none" stroke="#4a4a4a" stroke-width="1"/>
+                <path d="M74 101 Q82 105 90 101" fill="none" stroke="#4a4a4a" stroke-width="1"/>
+                <!-- Flat unimpressed mouth -->
+                <line x1="60" y1="116" x2="80" y2="116" stroke="#444" stroke-width="1.2"/>
+                <!-- Coffee mug in hand -->
+                <rect x="8" y="200" width="18" height="22" rx="2" fill="#444" stroke="#555" stroke-width="1"/>
+                <path d="M26 205 Q32 208 32 215 Q32 220 26 222" fill="none" stroke="#555" stroke-width="1.5"/>
+            </g>
+            <rect width="300" height="300" fill="url(#ca-shadow6)" opacity="0.4"/>
+        </svg>`,
+
+        // Vinnie - boss, eating hot dog, cheap suit
+        vinnie: `<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="ca-shadow7" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="transparent"/>
+                    <stop offset="100%" stop-color="#000" stop-opacity="0.6"/>
+                </linearGradient>
+                <pattern id="ca-hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                    <line x1="0" y1="0" x2="0" y2="6" stroke="#555" stroke-width="0.3"/>
+                </pattern>
+            </defs>
+            <rect width="300" height="300" fill="#0e0e0e"/>
+            <!-- Street background -->
+            <rect x="0" y="220" width="300" height="80" fill="#1a1a1a"/>
+            <!-- Fire escape lines -->
+            <g opacity="0.15" stroke="#444" stroke-width="1.5">
+                <line x1="20" y1="30" x2="20" y2="300"/>
+                <line x1="60" y1="30" x2="60" y2="300"/>
+                <line x1="20" y1="80" x2="60" y2="80"/>
+                <line x1="20" y1="140" x2="60" y2="140"/>
+                <line x1="20" y1="200" x2="60" y2="200"/>
+            </g>
+            <!-- Vinnie -->
+            <g transform="translate(70, 35)">
+                <!-- Cheap suit -->
+                <rect x="25" y="155" width="100" height="110" rx="3" fill="#2a2a2a"/>
+                <!-- Open collar -->
+                <path d="M55 155 L75 180 L95 155" fill="#3a3a3a"/>
+                <!-- Gold chain -->
+                <path d="M58 164 Q75 172 92 164" fill="none" stroke="#666" stroke-width="1.5"/>
+                <!-- Neck thick -->
+                <rect x="52" y="128" width="46" height="30" fill="#555"/>
+                <!-- Head -->
+                <circle cx="75" cy="95" r="42" fill="#585858"/>
+                <!-- Slicked back hair -->
+                <path d="M35 82 Q42 42 75 35 Q108 42 115 82" fill="#222"/>
+                <!-- Beady eyes -->
+                <circle cx="60" cy="92" r="4" fill="#222"/>
+                <circle cx="90" cy="92" r="4" fill="#222"/>
+                <circle cx="61" cy="91" r="1.5" fill="#555"/>
+                <circle cx="91" cy="91" r="1.5" fill="#555"/>
+                <!-- Heavy eyebrows -->
+                <line x1="50" y1="82" x2="68" y2="86" stroke="#333" stroke-width="3"/>
+                <line x1="82" y1="86" x2="100" y2="82" stroke="#333" stroke-width="3"/>
+                <!-- 5 o'clock shadow -->
+                <path d="M45 102 Q55 130 75 135 Q95 130 105 102" fill="url(#ca-hatch)" opacity="0.2"/>
+                <!-- Eating - open mouth with hot dog -->
+                <ellipse cx="75" cy="112" rx="10" ry="7" fill="#3a3a3a"/>
+                <!-- Hot dog -->
+                <rect x="80" y="108" width="45" height="8" rx="4" fill="#444"/>
+                <rect x="85" y="106" width="35" height="12" rx="3" fill="#555" opacity="0.5"/>
+            </g>
+            <rect width="300" height="300" fill="url(#ca-shadow7)" opacity="0.4"/>
+        </svg>`,
+
+        // Gorilla - the suspect in scene
+        gorilla: `<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="ca-shadow8" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="transparent"/>
+                    <stop offset="100%" stop-color="#000" stop-opacity="0.6"/>
+                </linearGradient>
+            </defs>
+            <rect width="300" height="300" fill="#080808"/>
+            <!-- Dark room -->
+            <rect x="100" y="0" width="100" height="300" fill="#0e0e0e" opacity="0.3"/>
+            <!-- Gorilla - menacing, center frame -->
+            <g transform="translate(70, 30)">
+                <!-- Massive body -->
+                <ellipse cx="80" cy="200" rx="70" ry="80" fill="#1e1e1e"/>
+                <!-- Huge shoulders -->
+                <ellipse cx="20" cy="170" rx="30" ry="50" fill="#1a1a1a" transform="rotate(-10, 20, 170)"/>
+                <ellipse cx="140" cy="170" rx="30" ry="50" fill="#1a1a1a" transform="rotate(10, 140, 170)"/>
+                <!-- Head -->
+                <ellipse cx="80" cy="90" rx="45" ry="52" fill="#222"/>
+                <!-- Heavy brow ridge -->
+                <path d="M40 78 Q80 62 120 78" fill="#1a1a1a" stroke="#151515" stroke-width="1.5"/>
+                <!-- Eyes - deep-set, intelligent -->
+                <ellipse cx="62" cy="82" rx="8" ry="5.5" fill="#111"/>
+                <ellipse cx="98" cy="82" rx="8" ry="5.5" fill="#111"/>
+                <circle cx="64" cy="81" r="3" fill="#555"/>
+                <circle cx="100" cy="81" r="3" fill="#555"/>
+                <!-- Wide nose -->
+                <ellipse cx="80" cy="100" rx="12" ry="8" fill="#1a1a1a"/>
+                <circle cx="74" cy="100" r="3" fill="#111"/>
+                <circle cx="86" cy="100" r="3" fill="#111"/>
+                <!-- Mouth -->
+                <path d="M65 115 Q80 122 95 115" fill="none" stroke="#111" stroke-width="1.5"/>
+
+                <!-- === THE SEAM === -->
+                <line x1="35" y1="135" x2="125" y2="135" stroke="#555" stroke-width="2.5" stroke-dasharray="4,3"/>
+                <path d="M55 133 Q60 139 65 133" fill="none" stroke="#666" stroke-width="1"/>
+                <path d="M95 133 Q100 139 105 133" fill="none" stroke="#666" stroke-width="1"/>
+            </g>
+            <rect width="300" height="300" fill="url(#ca-shadow8)" opacity="0.5"/>
+        </svg>`,
+
+        // You - the player detective, noir silhouette (for internal monologue)
+        you: `<svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <linearGradient id="ca-shadow9" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stop-color="transparent"/>
+                    <stop offset="100%" stop-color="#000" stop-opacity="0.6"/>
+                </linearGradient>
+            </defs>
+            <rect width="300" height="300" fill="#0a0a0a"/>
+            <!-- Venetian blind light stripes -->
+            <g opacity="0.08">
+                <rect x="0" y="40" width="300" height="12" fill="#fff" transform="rotate(-5, 150, 46)"/>
+                <rect x="0" y="80" width="300" height="12" fill="#fff" transform="rotate(-5, 150, 86)"/>
+                <rect x="0" y="120" width="300" height="12" fill="#fff" transform="rotate(-5, 150, 126)"/>
+                <rect x="0" y="160" width="300" height="12" fill="#fff" transform="rotate(-5, 150, 166)"/>
+                <rect x="0" y="200" width="300" height="12" fill="#fff" transform="rotate(-5, 150, 206)"/>
+            </g>
+            <!-- Detective silhouette from behind / side -->
+            <g transform="translate(80, 40)">
+                <!-- Trenchcoat body -->
+                <path d="M30 160 L20 280 L130 280 L120 160" fill="#181818"/>
+                <!-- Shoulders -->
+                <rect x="20" y="145" width="110" height="20" rx="5" fill="#1a1a1a"/>
+                <!-- Collar turned up -->
+                <path d="M35 145 L40 125 L55 140" fill="#1e1e1e"/>
+                <path d="M115 145 L110 125 L95 140" fill="#1e1e1e"/>
+                <!-- Neck -->
+                <rect x="55" y="118" width="40" height="28" fill="#444"/>
+                <!-- Head -->
+                <circle cx="75" cy="90" r="38" fill="#4a4a4a"/>
+                <!-- Fedora -->
+                <ellipse cx="75" cy="58" rx="42" ry="10" fill="#2a2a2a"/>
+                <path d="M38 58 Q45 35 75 28 Q105 35 112 58" fill="#2a2a2a"/>
+                <line x1="33" y1="58" x2="117" y2="58" stroke="#333" stroke-width="2"/>
+                <!-- Shadow across face - deep noir -->
+                <rect x="37" y="58" width="76" height="20" fill="#333" opacity="0.6"/>
+                <!-- Eyes barely visible in shadow -->
+                <circle cx="60" cy="88" r="3" fill="#333"/>
+                <circle cx="90" cy="88" r="3" fill="#333"/>
+                <!-- Cigarette smoke hint -->
+                <path d="M95 105 Q100 95 97 85 Q102 75 98 65" fill="none" stroke="#333" stroke-width="1" opacity="0.4"/>
+            </g>
+            <rect width="300" height="300" fill="url(#ca-shadow9)" opacity="0.4"/>
+        </svg>`
+    }
+};
+
+/* ============================================
    Character Portraits - shown in dialogue panel
    55x55px SVG portraits, greyscale noir style
    ============================================ */

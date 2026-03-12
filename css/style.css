@@ -553,6 +553,27 @@ body {
     to { opacity: 1; }
 }
 
+@keyframes printerSlideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-30px);
+        max-height: 0;
+    }
+    30% {
+        opacity: 1;
+        max-height: 50px;
+    }
+    100% {
+        transform: translateY(0);
+        max-height: 400px;
+    }
+}
+
+.printer-animate {
+    animation: printerSlideIn 0.8s ease-out forwards;
+    overflow: hidden;
+}
+
 @keyframes blink {
     0%, 100% { opacity: 1; }
     50% { opacity: 0.3; }

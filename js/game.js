@@ -15,7 +15,8 @@ const game = {
         scenesVisited: [],
         gameOver: false,
         awaitingChoice: false,
-        finaleStage: 0
+        finaleStage: 0,
+        currentSceneArt: '' // Store the base scene art to restore later
     },
 
     // DOM references (cached on init)
@@ -77,7 +78,8 @@ const game = {
             scenesVisited: [],
             gameOver: false,
             awaitingChoice: false,
-            finaleStage: 0
+            finaleStage: 0,
+            currentSceneArt: ''
         };
     },
 
@@ -106,16 +108,18 @@ const game = {
         this.state.dialogueIndex = 0;
         this.state.lineIndex = 0;
         this.state.awaitingChoice = false;
+
         this.state.scenesVisited.push(sceneId);
 
         // Update UI
         this.dom.sceneTitle.textContent = scene.title;
         this.dom.statusText.textContent = 'Scene ' + SCENE_ORDER.indexOf(sceneId) + ' of ' + (SCENE_ORDER.length - 1) + ' — Investigating...';
 
-        // Render scene art
+        // Render scene art and store it
         const artFn = SceneArt[sceneId];
         if (artFn) {
-            this.dom.sceneArtContainer.innerHTML = artFn.call(SceneArt);
+            this.state.currentSceneArt = artFn.call(SceneArt);
+            this.dom.sceneArtContainer.innerHTML = this.state.currentSceneArt;
         }
 
         // Add evidence
@@ -172,7 +176,10 @@ const game = {
 
         const dialogues = scene.dialogues;
         if (this.state.dialogueIndex >= dialogues.length) {
-            // All dialogue done
+            // All dialogue done - restore scene art before showing choices
+            if (this.state.currentSceneArt) {
+                this.dom.sceneArtContainer.innerHTML = this.state.currentSceneArt;
+            }
             if (scene.isFinale) {
                 this.playFinale();
             } else {
@@ -193,6 +200,10 @@ const game = {
         const line = block.lines[this.state.lineIndex];
         this.dom.speakerName.textContent = block.speaker;
         this.showPortrait(block.portrait || block.speaker);
+
+        // Swap scene art to character art
+        this.showCharacterArt(block.portrait || block.speaker);
+
         this.dom.dialoguePrompt.classList.add('hidden');
 
         this.typewrite(line, () => {
@@ -204,15 +215,40 @@ const game = {
         });
     },
 
+    // Show full character art in the scene panel
+    showCharacterArt(key) {
+        const art = CharacterArt.get(key);
+        if (art) {
+            this.dom.sceneArtContainer.innerHTML = art;
+        }
+        // If no character art found, keep whatever is currently showing
+    },
+
     // Typewriter effect
     typewrite(text, onComplete) {
+        // Clean up any previous handlers
+        this._cleanupHandlers();
+
         this.state.isTyping = true;
         this.dom.dialogueText.textContent = '';
         this.dom.dialogueText.classList.add('typing-cursor');
         let i = 0;
         const speed = 35;
+        let completed = false;
+
+        const finish = () => {
+            if (completed) return;
+            completed = true;
+            clearTimeout(this.state.typewriterTimeout);
+            this.dom.dialogueText.textContent = text;
+            this.state.isTyping = false;
+            this.dom.dialogueText.classList.remove('typing-cursor');
+            this._cleanupHandlers();
+            if (onComplete) onComplete();
+        };
 
         const tick = () => {
+            if (completed) return;
             if (i < text.length) {
                 this.dom.dialogueText.textContent += text[i];
                 // Auto-scroll dialogue
@@ -221,58 +257,80 @@ const game = {
                 i++;
                 this.state.typewriterTimeout = setTimeout(tick, speed);
             } else {
-                this.state.isTyping = false;
-                this.dom.dialogueText.classList.remove('typing-cursor');
-                if (onComplete) onComplete();
+                finish();
             }
         };
 
-        // Allow skip on click during typing
-        this._skipHandler = () => {
+        // Click/tap during typing = complete text instantly (don't advance)
+        this._skipHandler = (e) => {
             if (this.state.isTyping) {
-                clearTimeout(this.state.typewriterTimeout);
-                this.dom.dialogueText.textContent = text;
-                this.state.isTyping = false;
-                this.dom.dialogueText.classList.remove('typing-cursor');
-                document.removeEventListener('click', this._skipHandler);
-                document.removeEventListener('keydown', this._skipKeyHandler);
-                if (onComplete) onComplete();
+                e.stopPropagation();
+                e.preventDefault();
+                finish();
             }
         };
         this._skipKeyHandler = (e) => {
-            if (e.code === 'Space' || e.code === 'Enter') {
+            if ((e.code === 'Space' || e.code === 'Enter') && this.state.isTyping) {
                 e.preventDefault();
-                this._skipHandler();
+                e.stopPropagation();
+                finish();
             }
         };
 
         // Small delay before allowing skip to prevent accidental double-clicks
         setTimeout(() => {
-            document.addEventListener('click', this._skipHandler);
-            document.addEventListener('keydown', this._skipKeyHandler);
-        }, 100);
+            document.addEventListener('click', this._skipHandler, true);
+            document.addEventListener('keydown', this._skipKeyHandler, true);
+        }, 150);
 
         tick();
     },
 
+    // Clean up event handlers
+    _cleanupHandlers() {
+        if (this._skipHandler) {
+            document.removeEventListener('click', this._skipHandler, true);
+            this._skipHandler = null;
+        }
+        if (this._skipKeyHandler) {
+            document.removeEventListener('keydown', this._skipKeyHandler, true);
+            this._skipKeyHandler = null;
+        }
+        if (this._clickHandler) {
+            document.removeEventListener('click', this._clickHandler);
+            this._clickHandler = null;
+        }
+        if (this._keyHandler) {
+            document.removeEventListener('keydown', this._keyHandler);
+            this._keyHandler = null;
+        }
+    },
+
     // Wait for click/keypress then execute callback
     waitForClick(callback) {
-        const handler = (e) => {
+        this._cleanupHandlers();
+
+        this._clickHandler = (e) => {
             // Ignore clicks on choice buttons
-            if (e.target.classList && e.target.classList.contains('choice-btn')) return;
-            document.removeEventListener('click', handler);
-            document.removeEventListener('keydown', keyHandler);
+            if (e.target.closest('.printer-choice') || e.target.closest('.choice-btn')) return;
+            this._cleanupHandlers();
             this.dom.dialoguePrompt.classList.add('hidden');
             callback();
         };
-        const keyHandler = (e) => {
+        this._keyHandler = (e) => {
             if (e.code === 'Space' || e.code === 'Enter') {
                 e.preventDefault();
-                handler(e);
+                this._cleanupHandlers();
+                this.dom.dialoguePrompt.classList.add('hidden');
+                callback();
             }
         };
-        document.addEventListener('click', handler);
-        document.addEventListener('keydown', keyHandler);
+
+        // Small delay to prevent the same click that completed typing from also advancing
+        setTimeout(() => {
+            document.addEventListener('click', this._clickHandler);
+            document.addEventListener('keydown', this._keyHandler);
+        }, 200);
     },
 
     // Show portrait SVG for current speaker
@@ -292,11 +350,12 @@ const game = {
 
         this.dom.speakerName.textContent = 'YOUR CONCLUSION';
         this.showPortrait('you');
+        this.showCharacterArt('you');
         this.dom.dialoguePrompt.classList.add('hidden');
 
         // Build the printout inside the dialogue text area
         const printout = document.createElement('div');
-        printout.className = 'printer-printout';
+        printout.className = 'printer-printout printer-animate';
 
         const header = document.createElement('div');
         header.className = 'printer-header';
@@ -318,7 +377,10 @@ const game = {
             const btn = document.createElement('button');
             btn.className = 'printer-choice ' + c.cls;
             btn.innerHTML = '<span class="printer-choice-num">' + (i + 1) + '.</span> ' + c.text;
-            btn.onclick = c.handler;
+            btn.onclick = (e) => {
+                e.stopPropagation();
+                c.handler();
+            };
             printout.appendChild(btn);
         });
 
@@ -343,13 +405,14 @@ const game = {
         });
     },
 
-    // Handle choosing "person" - continue the story
+    // Handle choosing "person" or "continue" - advance the story
     handlePersonChoice() {
         const scene = SCENES[this.state.currentScene];
 
         this.dom.choicesContainer.innerHTML = '';
         this.dom.speakerName.textContent = 'INTERNAL MONOLOGUE';
         this.showPortrait('you');
+        this.showCharacterArt('you');
 
         this.typewrite(scene.continueText, () => {
             this.dom.dialoguePrompt.classList.remove('hidden');
@@ -388,6 +451,7 @@ const game = {
             const line = block.lines[lIdx];
             this.dom.speakerName.textContent = block.speaker;
             this.showPortrait(block.portrait || block.speaker);
+            this.showCharacterArt(block.portrait || block.speaker);
 
             this.typewrite(line, () => {
                 lIdx++;
@@ -415,6 +479,7 @@ const game = {
             this.dom.statusText.textContent = 'You knew it...';
 
             this.dom.speakerName.textContent = 'You (internal monologue)';
+            this.showPortrait('you');
             this.typewrite('You knew it. You always knew. Just a man in a gorilla suit. The seam gave it away from the very beginning. Case solved.', () => {
                 this.dom.dialoguePrompt.classList.remove('hidden');
                 this.waitForClick(() => {
@@ -432,6 +497,7 @@ const game = {
             this.dom.statusText.textContent = '...';
 
             this.dom.speakerName.textContent = 'You (internal monologue)';
+            this.showPortrait('you');
             this.typewrite('Wait. He\'s reaching for his face again. What is he—\n\nOh no.\n\nUnderneath the man... is a gorilla. A real gorilla.\n\nIt was a gorilla wearing a man mask wearing a gorilla mask.\n\nProfessor Marsh was right all along.', () => {
                 this.dom.dialoguePrompt.classList.remove('hidden');
                 this.waitForClick(() => {
