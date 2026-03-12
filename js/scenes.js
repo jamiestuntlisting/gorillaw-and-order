@@ -371,25 +371,53 @@ const SCENES = {
 
     finale: {
         id: "finale",
-        title: "???",
-        description: "You step out of Marsh's apartment building into the alley to make a phone call. The streetlight flickers. Where's Rick? He was right behind you. Then you hear it. Heavy breathing. The sound of something big moving in the shadows. You turn around.",
+        title: "275 President St, Apt 4 - The Ambush",
+        description: "You're about to leave Marsh's apartment when the front door\u2014the one Rick kicked in\u2014slams shut. The lock clicks. But nobody touched it. Then the lights go out. In the darkness, you hear heavy breathing. And it's not Rick. And it's not Marsh. And it's coming from inside the apartment.",
         evidence: [],
         dialogues: [
+            {
+                speaker: "Det. Rick Brannigan",
+                portrait: "rick",
+                lines: [
+                    "Uh... did someone close the door? I kicked that door pretty hard.",
+                    "Also, why is it dark? I don't like it when it's dark.",
+                    "Professor, is that you breathing like that? That's very loud breathing."
+                ]
+            },
+            {
+                speaker: "Prof. Nathaniel Marsh",
+                portrait: "marsh",
+                lines: [
+                    "That's not me. I'm over here. By the cereal.",
+                    "Oh no. Oh no no no.",
+                    "Detectives, I think G came back.",
+                    "And I don't think G is... I don't think G is a person."
+                ]
+            },
             {
                 speaker: "???",
                 portrait: "gorilla",
                 lines: [
-                    "*heavy breathing from the darkness*",
-                    "*a massive figure steps into the light*",
-                    "*it's the gorilla*",
-                    "*it grabs you before you can reach your weapon*"
+                    "*heavy breathing from the hallway closet*",
+                    "*the closet door splinters outward*",
+                    "*a massive figure steps into what little light remains*",
+                    "*it's the gorilla. It was in the apartment the whole time.*"
+                ]
+            },
+            {
+                speaker: "Det. Rick Brannigan",
+                portrait: "rick",
+                lines: [
+                    "IT WAS IN THE CLOSET?! IT WAS IN THE CLOSET THE WHOLE TIME?!",
+                    "WE WERE JUST STANDING HERE TALKING AND IT WAS IN THE CLOSET?!",
+                    "I KICKED THE DOOR DOWN FOR NOTHING!"
                 ]
             },
             {
                 speaker: "You (internal monologue)",
                 portrait: "you",
                 lines: [
-                    "This is it. Face to face with the gorilla.",
+                    "This is it. Face to face with the gorilla. All three of us trapped.",
                     "Up close, the seam around the neck is obvious. The fur has a slightly synthetic sheen.",
                     "The eyes behind the mask are human. You've known it all along.",
                     "It was always a man in a suit."
@@ -402,10 +430,27 @@ const SCENES = {
                     "*reaches up to its own neck*",
                     "*grips the seam*",
                     "*pulls off the gorilla mask*",
-                    "Surprise, detective. It's just a guy in a mask.",
-                    "You knew all along, didn't you? The seam gave it away.",
-                    "I'm just a regular guy. Name's Gary. The whole gorilla thing was just a gimmick.",
-                    "Pretty convincing though, right? The zoo professor even fell for it."
+                    "Surprise, detectives. It's just a guy in a mask.",
+                    "Name's Gary. The whole gorilla thing was just a gimmick.",
+                    "Pretty convincing though, right?"
+                ]
+            },
+            {
+                speaker: "Prof. Nathaniel Marsh",
+                portrait: "marsh",
+                lines: [
+                    "Gary?! You've been hiding in OUR CLOSET?!",
+                    "For how LONG?!",
+                    "I was eating cereal in my gorilla suit and you were just... in the closet?!"
+                ]
+            },
+            {
+                speaker: "Det. Rick Brannigan",
+                portrait: "rick",
+                lines: [
+                    "Wait. So there are now TWO guys in gorilla suits and one guy who just took OFF a gorilla suit?",
+                    "That's three gorilla situations in one apartment!",
+                    "I need to sit down."
                 ]
             },
             {
@@ -421,13 +466,22 @@ const SCENES = {
                 speaker: "Gary",
                 portrait: "gary",
                 lines: [
-                    "Actually, detective... there's one more thing.",
+                    "Actually, detectives... there's one more thing.",
                     "*reaches up to his own face*",
                     "*grips the skin around his jaw*",
                     "*pulls off the human face*",
                     "*underneath is a gorilla*",
                     "*an actual gorilla*",
                     "OOK."
+                ]
+            },
+            {
+                speaker: "Prof. Nathaniel Marsh",
+                portrait: "marsh",
+                lines: [
+                    "...I KNEW IT!",
+                    "I told you at the crime scene! I said it was a gorilla!",
+                    "Nobody listens to the primate specialist! NOBODY!"
                 ]
             },
             {
@@ -438,7 +492,7 @@ const SCENES = {
                     "Oh no no no.",
                     "It was a gorilla wearing a man mask wearing a gorilla mask.",
                     "A gorilla all along.",
-                    "Professor Marsh was right."
+                    "Professor Marsh was right. He was always right."
                 ]
             },
             {
@@ -447,6 +501,7 @@ const SCENES = {
                 lines: [
                     "OOK OOK.",
                     "*cracks knuckles*",
+                    "*looks at all three of you*",
                     "*2,700 pounds of force per square inch*"
                 ]
             }

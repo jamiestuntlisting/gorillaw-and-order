@@ -517,15 +517,19 @@ const game = {
             this.dom.gameoverArt.innerHTML = SceneArt.gameOver();
 
             const deathText = [
-                'The gorilla looks at you with ancient, knowing eyes.',
+                'The gorilla looks at all three of you with ancient, knowing eyes.',
                 '',
                 'It cracks its knuckles.',
                 '',
                 '2,700 pounds of force per square inch.',
                 '',
-                'You think about Rick. Where was Rick? He was right behind you.',
+                'Rick screams. Marsh screams louder. You don\'t scream. Detectives don\'t scream.',
                 '',
-                'He was probably getting another hot dog.',
+                'Okay. You scream a little.',
+                '',
+                'Professor Marsh yells "I TOLD YOU IT WAS A GORILLA" as the lights go out.',
+                '',
+                'Rick tries to fight it with a cereal box. It does not work.',
                 '',
                 '...',
                 '',
@@ -533,9 +537,11 @@ const game = {
                 '',
                 'You lost. But wasn\'t that more fun than declaring it was a gorilla in scene one?',
                 '',
-                'The gorilla was real all along. Professor Marsh was right. Rick never figured it out.',
+                'The gorilla was real all along. Professor Marsh was right. He died knowing he was right, which is exactly how he would have wanted to go.',
                 '',
-                'Somewhere in Brooklyn, Detective Rick Brannigan is still eating a hot dog, blissfully unaware that his partner is dead and the case was, in fact, a gorilla the whole time.'
+                'Rick\'s last words were "Is this suspicious? I genuinely cannot tell."',
+                '',
+                'Three people and two gorilla suits in one apartment. Only one real gorilla. And it was the one that came out of the closet.'
             ].join('\n');
 
             this.dom.gameoverText.textContent = '';
