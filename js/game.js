@@ -533,6 +533,16 @@ const game = {
                 '',
                 '...',
                 '',
+                '275 President Street. Apartment 4.',
+                '',
+                'The first officers on the scene find three bodies and two gorilla suits.',
+                '',
+                'Beat Cop Murphy stares at the wreckage. "Six bodies at the warehouse. Three more here. Same M.O."',
+                '',
+                '"Witnesses say it was a gorilla," someone says.',
+                '',
+                'Murphy sighs. "Get me another detective."',
+                '',
                 'GAME OVER',
                 '',
                 'You lost. But wasn\'t that more fun than declaring it was a gorilla in scene one?',
@@ -541,7 +551,9 @@ const game = {
                 '',
                 'Rick\'s last words were "Is this suspicious? I genuinely cannot tell."',
                 '',
-                'Three people and two gorilla suits in one apartment. Only one real gorilla. And it was the one that came out of the closet.'
+                'Somewhere, another detective gets the call. Another crime scene. Another gorilla.',
+                '',
+                'The case file lands on their desk: CASE #7735.'
             ].join('\n');
 
             this.dom.gameoverText.textContent = '';
