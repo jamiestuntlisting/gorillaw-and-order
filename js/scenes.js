@@ -283,7 +283,7 @@ const SCENES = {
                     "Here's the paycheck. Made out to cash, obviously. We're not animals.",
                     "Well. He might be. I honestly don't know anymore.",
                     "But the address on file is 275 President Street, Apartment 4.",
-                    "He lives with some roommate. Smart guy. Works at the zoo or something.",
+                    "He lives with some roommate. Quiet guy. Glasses. Very particular about bananas.",
                     "*takes another bite* You didn't hear any of this from me.",
                     "Also, try Sal's relish. It's transcendent."
                 ]
@@ -292,10 +292,10 @@ const SCENES = {
                 speaker: "Det. Rick Brannigan",
                 portrait: "rick",
                 lines: [
-                    "His roommate works at the ZOO?! That's... actually, is that suspicious? I can't tell anymore.",
+                    "Quiet guy with glasses who's particular about bananas? That's not suspicious at all.",
                     "*mustard dripping on his tie*",
                     "This hot dog IS really good though.",
-                    "445 DeKalb. Apartment 6C. Let's roll, partner!",
+                    "275 President. Apartment 4. Let's roll, partner!",
                     "But first\u2014 Sal, one more hot dog for the road. With the relish.",
                     "Okay, NOW I'm ready. Gorilla or person? What do you think?"
                 ]
@@ -303,7 +303,7 @@ const SCENES = {
         ],
         winText: "You declare it was a gorilla. Vinnie shrugs and orders another hot dog.\n\nRick gets mustard on the case file. The investigation ends at a hot dog cart.\n\nVinnie's 'consulting' business continues unimpeded. The paycheck sits in an evidence box, gathering dust.\n\nTHE END.",
         continueChoice: "Follow the paycheck. That address is our next lead.",
-        continueText: "The paycheck has an address. The roommate works at the zoo. Something clicks in your brain. You and Rick head to 275 President Stnue.",
+        continueText: "The paycheck has an address. A roommate who's 'particular about bananas.' Something nags at you. You and Rick head to 275 President Street.",
         nextScene: "apartment"
     },
 
