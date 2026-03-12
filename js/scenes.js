@@ -68,7 +68,7 @@ const SCENES = {
         id: "atm_footage",
         title: "NYPD Tech Lab - ATM Footage Review",
         description: "The precinct tech lab smells like stale coffee and burnt electronics. Officer Chen, the department's AV specialist, has pulled up the ATM camera footage from across the street. The grainy black-and-white image fills the monitor.",
-        evidence: ["ATM footage of gorilla driving a car", "License plate: GLR-1LAH", "Vehicle: 2019 Honda Civic, silver"],
+        evidence: ["ATM footage of gorilla driving a car", "License plate: GWU-6401", "Vehicle: Silver Prius"],
         dialogues: [
             {
                 speaker: "Officer Chen - AV Tech",
@@ -78,8 +78,8 @@ const SCENES = {
                     "Here. 2:14 AM. Watch the loading dock.",
                     "See that? That's your gorilla. Coming out of the warehouse.",
                     "And now... wait for it...",
-                    "It gets into a car. A Honda Civic. The gorilla gets into a Honda Civic and drives away.",
-                    "I've never seen a gorilla drive a Honda Civic before.",
+                    "It gets into a car. A Prius. The gorilla gets into a Prius and drives away.",
+                    "I've never seen a gorilla drive a Prius before.",
                     "I mean, I haven't seen a lot of gorillas. But still."
                 ]
             },
@@ -99,8 +99,8 @@ const SCENES = {
                 speaker: "Officer Chen",
                 portrait: "chen",
                 lines: [
-                    "I managed to pull the plate. GLR-1LAH. It's registered to a stolen vehicle report from two days ago.",
-                    "2019 Honda Civic. Silver. Reported stolen from a parking garage in Midtown.",
+                    "I managed to pull the plate. GWU-6401. It's registered to a stolen vehicle report from two days ago.",
+                    "Silver Prius. Plate GWU-6401. Reported stolen from a parking garage in Midtown.",
                     "Also, detective... I zoomed in on the gorilla and...",
                     "There's a line. Around the neck. Like the fur doesn't quite connect to the head.",
                     "Could be a video artifact. Could be something else."
@@ -118,8 +118,8 @@ const SCENES = {
                 ]
             }
         ],
-        winText: "You declare it was a gorilla. Case closed.\n\nOfficer Chen shrugs and goes back to her coffee. Rick seems relieved.\n\nThe stolen Honda Civic is found abandoned in Queens three days later, covered in what appears to be synthetic fur.\n\nBut you've already closed the file.\n\nTHE END.",
-        continueChoice: "Run the plates. A gorilla doesn't drive a Honda Civic.",
+        winText: "You declare it was a gorilla. Case closed.\n\nOfficer Chen shrugs and goes back to her coffee. Rick seems relieved.\n\nThe stolen Prius is found abandoned in Queens three days later, covered in what appears to be synthetic fur.\n\nBut you've already closed the file.\n\nTHE END.",
+        continueChoice: "Run the plates. A gorilla doesn't drive a Prius.",
         continueText: "A gorilla that drives a car and wears a seatbelt? That neck seam again... You run the plates through the system. The stolen car was last seen near a rock climbing gym in Williamsburg.",
         nextScene: "climbing_gym"
     },
@@ -127,7 +127,7 @@ const SCENES = {
     climbing_gym: {
         id: "climbing_gym",
         title: "Summit Grip Rock Climbing Gym - Williamsburg",
-        description: "The stolen Honda Civic was spotted on a traffic cam near this climbing gym three times in the past month. The place smells like chalk dust and ambition. The walls are covered with colorful holds that look like candy. The manager, a man named Wilder, approaches you with an unsettling calm.",
+        description: "The stolen Prius was spotted on a traffic cam near this climbing gym three times in the past month. The place smells like chalk dust and ambition. The walls are covered with colorful holds that look like candy. The manager, a man named Wilder, approaches you with an unsettling calm.",
         evidence: ["Gorilla-suit suspect frequented the gym", "Suspect had a girlfriend", "Suspect described as 'intense, good grip strength'"],
         dialogues: [
             {
@@ -137,7 +137,7 @@ const SCENES = {
                     "Detectives. Namaste.",
                     "Yes, I know the individual you're describing. He came here often.",
                     "He didn't wear the gorilla suit inside, obviously. We have a dress code.",
-                    "But he'd show up in a Honda Civic wearing a gorilla mask and just... take it off in the parking lot like it was a hat.",
+                    "But he'd show up in a Prius wearing a gorilla mask and just... take it off in the parking lot like it was a hat.",
                     "Incredible grip strength. Best climber we've had. Could hang from one finger.",
                     "He was... intense. Very intense. Had this energy, you know? Primal."
                 ]

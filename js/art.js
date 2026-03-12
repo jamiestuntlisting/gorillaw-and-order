@@ -212,7 +212,7 @@ const SceneArt = {
             <rect x="55" y="150" width="290" height="70" fill="#1a1a1a"/>
             <line x1="55" y1="180" x2="345" y2="180" stroke="#333" stroke-width="1" stroke-dasharray="10,8"/>
 
-            <!-- Honda Civic -->
+            <!-- Silver Prius -->
             <g transform="translate(160, 145)">
                 <!-- Car body -->
                 <rect x="0" y="10" width="80" height="25" rx="3" fill="#333" stroke="#444" stroke-width="1"/>
