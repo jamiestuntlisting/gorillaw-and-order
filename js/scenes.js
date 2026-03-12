@@ -310,19 +310,20 @@ const SCENES = {
     apartment: {
         id: "apartment",
         title: "275 President St, Apt 4",
-        description: "A pre-war building on President Street. The elevator is broken, so you walk up four flights. Rick is winded by the second floor. You knock on Apt 4. The door opens, and standing there in a cardigan and reading glasses... is Professor Nathaniel Marsh. The primate specialist from the crime scene. He doesn't seem surprised to see you.",
-        evidence: ["Prof. Marsh is the suspect's roommate", "Marsh was at the crime scene AND lives with suspect", "Apartment has gorilla-related paraphernalia everywhere"],
+        description: "A pre-war building on President Street. The elevator is broken, so you walk up four flights. Rick is winded by the second floor. Nobody answers. Rick suggests kicking the door down. You remind him that's illegal. Rick kicks the door down anyway. Inside, frozen mid-bite over a bowl of cereal, wearing a full gorilla costume with the head pulled back like a hoodie... is Professor Nathaniel Marsh. The primate specialist from the crime scene.",
+        evidence: ["Prof. Marsh is the suspect's roommate", "Marsh was at the crime scene AND lives with suspect", "Marsh owns his OWN gorilla suit", "Apartment has gorilla-related paraphernalia everywhere"],
         dialogues: [
             {
                 speaker: "Prof. Nathaniel Marsh",
                 portrait: "marsh",
                 lines: [
-                    "Detectives. I was wondering when you'd find your way here.",
+                    "This\u2014 this isn't what it looks like!",
+                    "I can explain the gorilla suit! I'm a primate specialist! I study them!",
+                    "Sometimes you have to wear the suit to... to understand the gorilla mind.",
+                    "It's a METHOD. It's SCIENCE.",
                     "Yes, I'm G's roommate. Small world, isn't it?",
-                    "Before you ask\u2014 no, I had no idea he was involved in... whatever happened at that warehouse.",
-                    "I study gorillas professionally. He just... really liked gorillas recreationally.",
-                    "I thought it was a shared interest. Like a book club, but for primate enthusiasts.",
-                    "He's not here, by the way. He left yesterday. Took the gorilla suit and a duffel bag.",
+                    "But this is MY suit. G has his OWN suit. We are NOT sharing gorilla suits. That would be weird.",
+                    "He's not here. He left yesterday. Took HIS suit and a duffel bag.",
                     "Said he had 'one more thing to take care of.'"
                 ]
             },
@@ -333,8 +334,8 @@ const SCENES = {
                     "Hey! I know you! You're the guy from the... from the...",
                     "...from somewhere. Have we met? You look familiar.",
                     "Are you on TV? Do you do those car insurance commercials?",
-                    "No wait\u2014 are you my dentist?",
-                    "Partner, doesn't this guy look like someone?"
+                    "Wait\u2014 are you my dentist? My dentist has glasses.",
+                    "Partner, doesn't this guy look like someone? Minus the gorilla suit, obviously."
                 ]
             },
             {
@@ -342,10 +343,11 @@ const SCENES = {
                 portrait: "marsh",
                 lines: [
                     "We met at the crime scene. This morning. I'm the primate specialist.",
+                    "*still holding cereal spoon in gorilla glove*",
                     "I told you it was a gorilla. Which, technically, I still believe.",
-                    "The suit is... remarkably realistic. Museum-quality construction.",
+                    "The suit G has is remarkably realistic. Museum-quality construction.",
                     "But that seam around the neck. A real gorilla wouldn't have that.",
-                    "Then again, if it WERE a real gorilla who was very good at disguises...",
+                    "MINE doesn't have a seam, for the record. Mine is a Gustafson original.",
                     "I should stop talking. Forget I said anything. All of it."
                 ]
             },
@@ -354,16 +356,16 @@ const SCENES = {
                 portrait: "rick",
                 lines: [
                     "THE CRIME SCENE! That's where I know you from!",
-                    "Wow, what a coincidence! The gorilla expert lives with the gorilla guy!",
-                    "It's like when you run into your barber at the grocery store. Small world!",
+                    "Wow, what a coincidence! The gorilla expert lives with the gorilla guy! And he ALSO has a gorilla suit!",
+                    "It's like when you run into your barber at the grocery store. Except your barber is dressed as a gorilla. Eating cereal.",
                     "...Wait. Is that suspicious? I genuinely cannot tell.",
                     "Anyway, partner. What's the call? Gorilla or person?"
                 ]
             }
         ],
-        winText: "You declare it was a gorilla. Professor Marsh nods vigorously. 'Exactly what I've been saying!'\n\nRick asks if they can use Marsh's bathroom before they leave. He gets lost in the apartment for twenty minutes.\n\nThe case is filed under 'Wildlife Incidents.' No one questions why a primate specialist lived with a man in a gorilla suit.\n\nTHE END.",
-        continueChoice: "The zoo professor is his ROOMMATE? I need to find this guy now.",
-        continueText: "The primate specialist who showed up at the crime scene is the suspect's ROOMMATE? And he just let the guy leave with the suit? This stinks. You need to find G before\u2014",
+        winText: "You declare it was a gorilla. Professor Marsh nods vigorously, cereal milk dripping from his gorilla glove. 'Exactly what I've been saying!'\n\nRick asks if they can use Marsh's bathroom before they leave. He gets lost in the apartment for twenty minutes.\n\nThe case is filed under 'Wildlife Incidents.' No one questions why a primate specialist was eating Cheerios in a gorilla suit.\n\nTHE END.",
+        continueChoice: "Two gorilla suits?! I need to find this guy NOW.",
+        continueText: "The primate specialist from the crime scene is the suspect's ROOMMATE? He owns his OWN gorilla suit? And he just let G walk out with a duffel bag? This stinks. You need to find G before\u2014",
         nextScene: "finale"
     },
 
