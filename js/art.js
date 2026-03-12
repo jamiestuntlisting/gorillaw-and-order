@@ -890,7 +890,7 @@ const Portraits = {
     _portraits: {
         // You - the player detective, hardboiled
         you: `<svg viewBox="0 0 55 55" xmlns="http://www.w3.org/2000/svg">
-            <rect width="55" height="55" fill="#111"/>
+            <rect width="55" height="55" fill="#1a1a1a"/>
             <!-- Head -->
             <circle cx="27" cy="28" r="14" fill="#555"/>
             <!-- Fedora -->
@@ -911,7 +911,7 @@ const Portraits = {
 
         // Rick - your idiot partner, friendly face, bad tie
         rick: `<svg viewBox="0 0 55 55" xmlns="http://www.w3.org/2000/svg">
-            <rect width="55" height="55" fill="#111"/>
+            <rect width="55" height="55" fill="#1a1a1a"/>
             <!-- Head - rounder, friendlier -->
             <circle cx="27" cy="26" r="14" fill="#5a5a5a"/>
             <!-- Messy hair -->
@@ -936,7 +936,7 @@ const Portraits = {
 
         // Beat Cop Murphy - uniformed, mustache
         cop: `<svg viewBox="0 0 55 55" xmlns="http://www.w3.org/2000/svg">
-            <rect width="55" height="55" fill="#111"/>
+            <rect width="55" height="55" fill="#1a1a1a"/>
             <!-- Head -->
             <circle cx="27" cy="28" r="13" fill="#555"/>
             <!-- Police cap -->
@@ -958,7 +958,7 @@ const Portraits = {
 
         // Professor Marsh - glasses, thin hair, academic
         marsh: `<svg viewBox="0 0 55 55" xmlns="http://www.w3.org/2000/svg">
-            <rect width="55" height="55" fill="#111"/>
+            <rect width="55" height="55" fill="#1a1a1a"/>
             <!-- Head -->
             <circle cx="27" cy="27" r="13" fill="#555"/>
             <!-- Thin receding hair -->
@@ -983,7 +983,7 @@ const Portraits = {
 
         // Officer Chen - tech lab, headset
         chen: `<svg viewBox="0 0 55 55" xmlns="http://www.w3.org/2000/svg">
-            <rect width="55" height="55" fill="#111"/>
+            <rect width="55" height="55" fill="#1a1a1a"/>
             <!-- Head -->
             <circle cx="27" cy="27" r="13" fill="#555"/>
             <!-- Hair pulled back -->
@@ -1007,7 +1007,7 @@ const Portraits = {
 
         // Wilder - man bun, zen expression
         wilder: `<svg viewBox="0 0 55 55" xmlns="http://www.w3.org/2000/svg">
-            <rect width="55" height="55" fill="#111"/>
+            <rect width="55" height="55" fill="#1a1a1a"/>
             <!-- Head -->
             <circle cx="27" cy="28" r="13" fill="#555"/>
             <!-- Man bun -->
@@ -1030,7 +1030,7 @@ const Portraits = {
 
         // Dana - tired, hair down, unimpressed
         dana: `<svg viewBox="0 0 55 55" xmlns="http://www.w3.org/2000/svg">
-            <rect width="55" height="55" fill="#111"/>
+            <rect width="55" height="55" fill="#1a1a1a"/>
             <!-- Head -->
             <circle cx="27" cy="26" r="13" fill="#5a5a5a"/>
             <!-- Long hair -->
@@ -1055,7 +1055,12 @@ const Portraits = {
 
         // Vinnie - slicked hair, cheap suit, eating
         vinnie: `<svg viewBox="0 0 55 55" xmlns="http://www.w3.org/2000/svg">
-            <rect width="55" height="55" fill="#111"/>
+            <defs>
+                <pattern id="p-crosshatch-light" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                    <line x1="0" y1="0" x2="0" y2="6" stroke="#555" stroke-width="0.3"/>
+                </pattern>
+            </defs>
+            <rect width="55" height="55" fill="#1a1a1a"/>
             <!-- Head -->
             <circle cx="27" cy="27" r="13" fill="#555"/>
             <!-- Slicked back hair -->
@@ -1069,7 +1074,7 @@ const Portraits = {
             <!-- Eating - open mouth -->
             <ellipse cx="27" cy="33" rx="4" ry="3" fill="#444"/>
             <!-- 5 o'clock shadow -->
-            <path d="M17 30 Q20 38 27 40 Q34 38 37 30" fill="url(#crosshatch-light)" opacity="0.2"/>
+            <path d="M17 30 Q20 38 27 40 Q34 38 37 30" fill="url(#p-crosshatch-light)" opacity="0.2"/>
             <!-- Cheap suit + open collar -->
             <rect x="15" y="40" width="24" height="15" fill="#2a2a2a"/>
             <path d="M22 40 L27 46 L32 40" fill="#333"/>
@@ -1105,6 +1110,11 @@ const Portraits = {
 
         // Gary - the man under the gorilla mask
         gary: `<svg viewBox="0 0 55 55" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <pattern id="p-crosshatch-light2" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                    <line x1="0" y1="0" x2="0" y2="6" stroke="#555" stroke-width="0.3"/>
+                </pattern>
+            </defs>
             <rect width="55" height="55" fill="#0a0a0a"/>
             <!-- Head -->
             <circle cx="27" cy="25" r="14" fill="#555"/>
@@ -1116,7 +1126,7 @@ const Portraits = {
             <!-- Smirk -->
             <path d="M22 31 Q27 35 32 30" fill="none" stroke="#444" stroke-width="1"/>
             <!-- Stubble -->
-            <rect x="18" y="28" width="18" height="10" fill="url(#crosshatch-light)" opacity="0.15"/>
+            <rect x="18" y="28" width="18" height="10" fill="url(#p-crosshatch-light2)" opacity="0.15"/>
             <!-- Gorilla suit visible at neck -->
             <rect x="14" y="38" width="26" height="17" fill="#2a2a2a"/>
             <!-- Suit fur texture -->
@@ -1157,7 +1167,7 @@ const Portraits = {
 
         // Scene description - magnifying glass
         scene: `<svg viewBox="0 0 55 55" xmlns="http://www.w3.org/2000/svg">
-            <rect width="55" height="55" fill="#111"/>
+            <rect width="55" height="55" fill="#1a1a1a"/>
             <!-- Magnifying glass -->
             <circle cx="24" cy="22" r="12" fill="none" stroke="#666" stroke-width="2"/>
             <circle cx="24" cy="22" r="9" fill="#1a1a1a"/>

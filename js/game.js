@@ -285,48 +285,48 @@ const game = {
         }
     },
 
-    // Present the gorilla/person/continue choice
+    // Present the gorilla/person/continue choice - rendered as printer printout in dialogue area
     presentChoice() {
         this.state.awaitingChoice = true;
         const scene = SCENES[this.state.currentScene];
 
         this.dom.speakerName.textContent = 'YOUR CONCLUSION';
         this.showPortrait('you');
-        this.dom.dialogueText.textContent = 'Based on the evidence, what do you think happened here?';
         this.dom.dialoguePrompt.classList.add('hidden');
 
-        this.dom.choicesContainer.innerHTML = '';
+        // Build the printout inside the dialogue text area
+        const printout = document.createElement('div');
+        printout.className = 'printer-printout';
 
-        // Gorilla choice - ends the game
-        const gorillaBtn = document.createElement('button');
-        gorillaBtn.className = 'choice-btn gorilla-choice';
-        gorillaBtn.textContent = 'It was a gorilla that escaped from the zoo.';
-        gorillaBtn.onclick = () => {
-            GameAudio.choiceClick();
-            this.handleGorillaChoice();
-        };
+        const header = document.createElement('div');
+        header.className = 'printer-header';
+        header.textContent = 'CASE DETERMINATION FORM';
+        printout.appendChild(header);
 
-        // Continue investigating choice - keeps the story going
-        const continueBtn = document.createElement('button');
-        continueBtn.className = 'choice-btn continue-choice';
-        continueBtn.textContent = scene.continueChoice || 'I need more evidence. Keep investigating.';
-        continueBtn.onclick = () => {
-            GameAudio.choiceClick();
-            this.handlePersonChoice();
-        };
+        const prompt = document.createElement('div');
+        prompt.className = 'printer-prompt';
+        prompt.textContent = 'Based on the evidence, what do you think happened here?';
+        printout.appendChild(prompt);
 
-        // Person choice - also keeps the story going
-        const personBtn = document.createElement('button');
-        personBtn.className = 'choice-btn person-choice';
-        personBtn.textContent = 'No... this was done by a person.';
-        personBtn.onclick = () => {
-            GameAudio.choiceClick();
-            this.handlePersonChoice();
-        };
+        const choices = [
+            { text: 'It was a gorilla that escaped from the zoo.', cls: 'gorilla-choice', handler: () => { GameAudio.choiceClick(); this.handleGorillaChoice(); } },
+            { text: scene.continueChoice || 'I need more evidence. Keep investigating.', cls: 'continue-choice', handler: () => { GameAudio.choiceClick(); this.handlePersonChoice(); } },
+            { text: 'No... this was done by a person.', cls: 'person-choice', handler: () => { GameAudio.choiceClick(); this.handlePersonChoice(); } }
+        ];
 
-        this.dom.choicesContainer.appendChild(gorillaBtn);
-        this.dom.choicesContainer.appendChild(continueBtn);
-        this.dom.choicesContainer.appendChild(personBtn);
+        choices.forEach((c, i) => {
+            const btn = document.createElement('button');
+            btn.className = 'printer-choice ' + c.cls;
+            btn.innerHTML = '<span class="printer-choice-num">' + (i + 1) + '.</span> ' + c.text;
+            btn.onclick = c.handler;
+            printout.appendChild(btn);
+        });
+
+        this.dom.dialogueText.textContent = '';
+        this.dom.dialogueText.appendChild(printout);
+
+        // Scroll to show choices
+        this.dom.dialogueText.parentElement.scrollTop = this.dom.dialogueText.parentElement.scrollHeight;
 
         this.dom.statusText.textContent = 'Make your determination...';
     },

@@ -286,21 +286,24 @@ body {
 #dialogue-header {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 10px;
-    min-height: 60px;
+    gap: 12px;
+    margin-bottom: 12px;
+    min-height: 68px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #333;
 }
 
 #speaker-portrait {
-    width: 55px;
-    height: 55px;
-    min-width: 55px;
-    border: 1px solid var(--panel-border);
-    background: #111;
+    width: 64px;
+    height: 64px;
+    min-width: 64px;
+    border: 2px solid var(--panel-border-light);
+    background: #181818;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    box-shadow: inset 0 0 4px rgba(0,0,0,0.5), 1px 1px 3px rgba(0,0,0,0.4);
 }
 
 #speaker-portrait svg {
@@ -309,17 +312,23 @@ body {
 }
 
 #speaker-portrait:empty {
-    display: none;
+    visibility: hidden;
+    width: 0;
+    min-width: 0;
+    border: none;
+    margin: 0;
+    padding: 0;
 }
 
 #speaker-name {
     font-family: var(--font-ui);
-    font-size: 0.85rem;
+    font-size: 0.9rem;
     font-weight: bold;
     color: var(--text-highlight);
     text-transform: uppercase;
     letter-spacing: 0.1rem;
     min-height: 1.2em;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
 }
 
 #dialogue-text {
@@ -576,6 +585,129 @@ body {
 
 ::-webkit-scrollbar-thumb:hover {
     background: var(--accent);
+}
+
+/* --- Printer Printout (Choice Form) --- */
+.printer-printout {
+    background: #d8d4c8;
+    color: #111;
+    font-family: 'Courier New', Courier, monospace;
+    padding: 16px 28px;
+    position: relative;
+    border: 1px solid #aaa;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+    margin-top: 8px;
+}
+
+/* Tractor-feed holes - left side */
+.printer-printout::before,
+.printer-printout::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 16px;
+    background:
+        repeating-linear-gradient(
+            180deg,
+            transparent 0px,
+            transparent 8px,
+            #999 8px,
+            #999 9px,
+            transparent 9px,
+            transparent 17px
+        ),
+        radial-gradient(circle 4px at 8px 13px, #1e1e1e 3px, transparent 3.5px);
+    background-size: 16px 26px;
+    background-position: 0 4px;
+}
+
+.printer-printout::before {
+    left: -18px;
+    background-color: #c4c0b4;
+    border: 1px solid #aaa;
+    border-right: none;
+    border-radius: 2px 0 0 2px;
+}
+
+.printer-printout::after {
+    right: -18px;
+    background-color: #c4c0b4;
+    border: 1px solid #aaa;
+    border-left: none;
+    border-radius: 0 2px 2px 0;
+}
+
+/* Perforation lines at top and bottom */
+.printer-printout {
+    border-top: 2px dashed #bbb;
+    border-bottom: 2px dashed #bbb;
+}
+
+.printer-header {
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-align: center;
+    letter-spacing: 0.2rem;
+    text-transform: uppercase;
+    border-bottom: 1px solid #999;
+    padding-bottom: 8px;
+    margin-bottom: 10px;
+    color: #222;
+}
+
+.printer-prompt {
+    font-size: 0.75rem;
+    color: #444;
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+
+.printer-choice {
+    display: block;
+    width: 100%;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 0.8rem;
+    color: #111;
+    background: transparent;
+    border: 1px solid transparent;
+    border-bottom: 1px dotted #aaa;
+    padding: 8px 4px;
+    cursor: pointer;
+    text-align: left;
+    transition: all 0.15s ease;
+    letter-spacing: 0.02rem;
+}
+
+.printer-choice:last-child {
+    border-bottom: none;
+}
+
+.printer-choice:hover {
+    background: rgba(0, 0, 0, 0.08);
+    border-color: #888;
+    color: #000;
+}
+
+.printer-choice-num {
+    font-weight: bold;
+    margin-right: 4px;
+    color: #333;
+}
+
+/* Hide bottom choices panel since choices now appear in dialogue */
+#choices-panel {
+    display: none;
+}
+
+/* Give evidence panel full width now */
+#bottom-area {
+    height: 160px;
+    min-height: 160px;
+}
+
+#evidence-panel {
+    margin: 4px 8px 8px 8px;
 }
 
 /* --- Responsive --- */
