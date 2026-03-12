@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gorillaw &amp; Order</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- CRT Scanline Overlay -->
+    <div id="scanlines"></div>
+
+    <!-- Fade transition overlay -->
+    <div id="fade-overlay"></div>
+
+    <!-- Title Screen -->
+    <div id="title-screen">
+        <div id="title-art"></div>
+        <h1 id="title-text">GORILLAW <span class="amp">&amp;</span> ORDER</h1>
+        <p id="title-subtitle">A NOIR DETECTIVE ADVENTURE</p>
+        <button id="start-btn" onclick="game.start()">BEGIN INVESTIGATION</button>
+        <p id="title-credit">BROOKLYN HOMICIDE DIVISION &bull; CASE #7734</p>
+    </div>
+
+    <!-- Game Screen -->
+    <div id="game-screen" class="hidden">
+        <!-- Title Bar -->
+        <div id="title-bar">
+            <div id="title-bar-left">
+                <span class="window-dot"></span>
+                <span class="window-dot"></span>
+                <span class="window-dot"></span>
+                <span id="game-title-text">GORILLAW &amp; ORDER</span>
+            </div>
+            <div id="title-bar-right">
+                <span id="scene-title"></span>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div id="main-area">
+            <!-- Left Column: Scene Image -->
+            <div id="scene-panel" class="panel">
+                <div class="panel-title-bar">
+                    <span class="panel-title">SCENE</span>
+                </div>
+                <div id="scene-art-container"></div>
+            </div>
+
+            <!-- Right Column: Dialogue -->
+            <div id="dialogue-panel" class="panel">
+                <div class="panel-title-bar">
+                    <span class="panel-title">INVESTIGATION</span>
+                </div>
+                <div id="dialogue-container">
+                    <div id="speaker-name"></div>
+                    <div id="dialogue-text"></div>
+                    <div id="dialogue-prompt" class="hidden">Click to continue...</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Area -->
+        <div id="bottom-area">
+            <!-- Evidence Panel -->
+            <div id="evidence-panel" class="panel">
+                <div class="panel-title-bar">
+                    <span class="panel-title">EVIDENCE</span>
+                </div>
+                <div id="evidence-list"></div>
+            </div>
+
+            <!-- Choices Panel -->
+            <div id="choices-panel" class="panel">
+                <div class="panel-title-bar">
+                    <span class="panel-title">CONCLUSION</span>
+                </div>
+                <div id="choices-container"></div>
+            </div>
+        </div>
+
+        <!-- Status Bar -->
+        <div id="status-bar">
+            <span id="status-text">Investigating...</span>
+        </div>
+    </div>
+
+    <!-- Win Screen -->
+    <div id="win-screen" class="hidden">
+        <div id="win-content">
+            <h2>CASE CLOSED</h2>
+            <div id="win-text"></div>
+            <button id="play-again-btn" onclick="game.restart()">INVESTIGATE AGAIN?</button>
+        </div>
+    </div>
+
+    <!-- Game Over Screen (the fun ending) -->
+    <div id="gameover-screen" class="hidden">
+        <div id="gameover-content">
+            <div id="gameover-art"></div>
+            <div id="gameover-text"></div>
+            <button id="gameover-restart-btn" class="hidden" onclick="game.restart()">PLAY AGAIN</button>
+        </div>
+    </div>
+
+    <script src="js/scenes.js"></script>
+    <script src="js/art.js"></script>
+    <script src="js/audio.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>
